@@ -29,7 +29,9 @@ Plug 'airblade/vim-gitgutter'
 
 " Appearance
 Plug 'rafi/awesome-vim-colorschemes'
-Plug 'dracula/vim', { 'as': 'dracula' }
+"Plug 'dracula/vim', { 'as': 'dracula' }
+"Plug 'tyrannicaltoucan/vim-deep-space'
+Plug 'AlessandroYorba/Sierra'
 Plug 'vim-airline/vim-airline'
 
 " Linting
@@ -93,7 +95,7 @@ set autoread
 "set tabstop=4               " number of columns occupied by a tab character
 "set softtabstop=4           " see multiple spaces as tabstops so <BS> does the right thing
 "set expandtab               " converts tabs to white space
-set shiftwidth=4            " width for autoindents
+"set shiftwidth=4            " width for autoindents
 "set autoindent              " indent a new line the same amount as the line just typed
 "set wildmode=longest,list   " get bash-like tab completions
 "set cc=100                   " set an 80 column border for good coding style
@@ -204,7 +206,10 @@ nnoremap <leader>y "+y
 nnoremap <leader>p "+p 
 
 " colors!
-color dracula
+" color dracula
+set termguicolors
+let g:sierra_Sunset = 1
+colorscheme sierra 
 
 " Run Neomake
 call neomake#configure#automake('nw', 1000)
