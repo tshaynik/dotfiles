@@ -107,6 +107,10 @@ set autoread
 "set autoindent
 "set background=dark
 "set laststatus=0
+filetype off
+filetype plugin indent on
+set mouse=a
+
 
 " `let`tings
 let NERDTreeShowHidden=1
@@ -117,24 +121,46 @@ let g:deoplete#enable_at_startup = 1
 let g:haskellmode_completion_ghc = 0
 autocmd FileType haskell setlocal omnifunc=necoghc#omnifunc
 " let g:haskell_classic_highlighting = 1
-nnoremap ,ss :InteroOpen<CR>
-nnoremap ,sS :InteroOpen<CR><C-w>ja
-tnoremap <C-s> <C-\><C-n>:InteroHide<CR>
-nnoremap ,sd :InteroHide<CR>
-nnoremap ,sb :InteroLoadCurrentFile<CR>
-nnoremap ,sB :InteroOpen<CR>:InteroLoadCurrentFile<CR><C-w>ja
-
-nnoremap ,tt :InteroType<CR>
-nnoremap ,ti :InteroTypeInsert<CR>
-nnoremap ,gd :InteroGoToDef<CR>
+au Filetype haskell nnoremap ,s :InteroOpen<CR>
+au Filetype haskell nnoremap ,S :InteroOpen<CR><C-w>ja
+au Filetype haskell tnoremap <C-s> <C-\><C-n>:InteroHide<CR>
+au Filetype haskell nnoremap ,h :InteroHide<CR>
+au Filetype haskell nnoremap ,b :InteroLoadCurrentFile<CR>
+au Filetype haskell nnoremap ,B :InteroOpen<CR>:InteroLoadCurrentFile<CR><C-w>ja
+au Filetype haskell 
+au Filetype haskell nnoremap ,tt :InteroType<CR>
+au Filetype haskell nnoremap ,ti :InteroTypeInsert<CR>
+au Filetype haskell nnoremap <Leader>d :InteroGoToDef<CR>
+au Filetype haskell autocmd BufNewFile,BufRead *.hs setlocal tabstop=2 softtabstop=2 shiftwidth=2 smarttab expandtab
 
 " Golang
 let g:go_auto_type_info = 1
 let g:go_fmt_command = "goimports"
 let g:deoplete#sources#go#gocode_binary = '/home/danielkt/go/bin/gocode'
+let g:go_snippet_engine = "neosnippet"
+
+au FileType go nnoremap <Leader>d <Plug>(go-def)
+au FileType go nnoremap <Leader>ms <Plug>(go-def-split)
+au FileType go nnoremap <Leader>mv <Plug>(go-def-vertical)
+au FileType go nnoremap <Leader>mi <Plug>(go-info)
+au FileType go nnoremap <Leader>ml <Plug>(go-metalinter)
+au FileType go nnoremap <leader>mr  <Plug>(go-run)
+au FileType go nnoremap <leader>mb  <Plug>(go-build)
+au FileType go nnoremap <leader>mt  <Plug>(go-test)
+au FileType go nnoremap <leader>tc  <Plug>(go-test-compile)
+au FileType go nnoremap <Leader>mm <Plug>(go-doc)
+au FileType go nnoremap <Leader>me <Plug>(go-rename)
+au FileType go nnoremap <leader>rt <Plug>(go-run-tab)
+au FileType go nnoremap <Leader>rs <Plug>(go-run-split)
+au FileType go nnoremap <Leader>rv <Plug>(go-run-vertical)
+
+autocmd BufNewFile,BufRead *.go setlocal noet ts=4 sw=4 sts=4
 
 " Terraform
 let g:terraform_fmt_on_save=1
+
+" Markdown
+autocmd BufNewFile,BufReadPost *.md setl ts=4 sw=4 sts=4 expandtab
 
 " should probably use leader
 nmap <leader>s :NERDTreeToggle<CR>
@@ -215,6 +241,7 @@ colorscheme sierra
 call neomake#configure#automake('nw', 1000)
 
 " Git bindings
+nnoremap <leader>ga :Git add %:p<CR><CR>
 nnoremap <leader>gb :Gblame<CR>
 nnoremap <leader>gs :Gstatus<CR>
 nnoremap <leader>ggt :GitGutterToggle<CR>
