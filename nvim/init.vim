@@ -27,11 +27,14 @@ Plug 'Shougo/neosnippet-snippets'
 Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter'
 
-" Appearance
-Plug 'rafi/awesome-vim-colorschemes'
+" Theme
 "Plug 'dracula/vim', { 'as': 'dracula' }
 "Plug 'tyrannicaltoucan/vim-deep-space'
-Plug 'AlessandroYorba/Sierra'
+"Plug 'AlessandroYorba/Sierra'
+Plug 'ajmwagar/vim-deus'
+
+
+" Appearance
 Plug 'vim-airline/vim-airline'
 
 " Linting
@@ -55,7 +58,8 @@ Plug 'davidhalter/jedi-vim'
 Plug 'zchee/deoplete-jedi'
 
 " Haskell
-Plug 'neovimhaskell/haskell-vim'
+"Plug 'neovimhaskell/haskell-vim'
+Plug 'urso/haskell_syntax.vim'
 Plug 'parsonsmatt/intero-neovim'
 Plug 'eagletmt/neco-ghc'
 
@@ -70,7 +74,7 @@ Plug 'saltstack/salt-vim'
 Plug 'hashivim/vim-terraform'
 
 " Other
-Plug 'vim-pandoc/vim-pandoc'
+"Plug 'vim-pandoc/vim-pandoc'
 Plug 'stephpy/vim-yaml'
 Plug 'tpope/vim-markdown'
 
@@ -117,10 +121,10 @@ let NERDTreeShowHidden=1
 let g:deoplete#enable_at_startup = 1
 
 "HASKELL
-" Disable haskell-vim omnifunc
-let g:haskellmode_completion_ghc = 0
-autocmd FileType haskell setlocal omnifunc=necoghc#omnifunc
-" let g:haskell_classic_highlighting = 1
+setlocal omnifunc=necoghc#omnifunc
+let g:intero_type_on_hover = 1
+
+"let g:haskell_classic_highlighting = 1
 au Filetype haskell nnoremap ,s :InteroOpen<CR>
 au Filetype haskell nnoremap ,S :InteroOpen<CR><C-w>ja
 au Filetype haskell tnoremap <C-s> <C-\><C-n>:InteroHide<CR>
@@ -131,7 +135,7 @@ au Filetype haskell
 au Filetype haskell nnoremap ,tt :InteroType<CR>
 au Filetype haskell nnoremap ,ti :InteroTypeInsert<CR>
 au Filetype haskell nnoremap <Leader>d :InteroGoToDef<CR>
-au Filetype haskell autocmd BufNewFile,BufRead *.hs setlocal tabstop=2 softtabstop=2 shiftwidth=2 smarttab expandtab
+autocmd BufNewFile,BufRead *.hs setlocal tabstop=2 softtabstop=2 shiftwidth=2 smarttab expandtab
 
 " Golang
 let g:go_auto_type_info = 1
@@ -231,11 +235,19 @@ vnoremap <leader>p "+p
 nnoremap <leader>y "+y 
 nnoremap <leader>p "+p 
 
-" colors!
+" Colours!
 " color dracula
+"set termguicolors
+"let g:sierra_Sunset = 1
+"colorscheme sierra 
+set t_Co=256
 set termguicolors
-let g:sierra_Sunset = 1
-colorscheme sierra 
+let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+set background=dark " Setting dark mode
+colorscheme deus
+
+let g:deus_termcolors=256
 
 " Run Neomake
 call neomake#configure#automake('nw', 1000)
