@@ -63,6 +63,9 @@ Plug 'urso/haskell_syntax.vim'
 Plug 'parsonsmatt/intero-neovim'
 Plug 'eagletmt/neco-ghc'
 
+" Rust
+Plug 'rust-lang/rust.vim'
+
 " Bash
 
 """"""""""""""""""""""""""""""""
@@ -111,7 +114,6 @@ set autoread
 "set autoindent
 "set background=dark
 "set laststatus=0
-filetype off
 filetype plugin indent on
 set mouse=a
 
@@ -125,17 +127,22 @@ setlocal omnifunc=necoghc#omnifunc
 let g:intero_type_on_hover = 1
 
 "let g:haskell_classic_highlighting = 1
-au Filetype haskell nnoremap ,s :InteroOpen<CR>
-au Filetype haskell nnoremap ,S :InteroOpen<CR><C-w>ja
-au Filetype haskell tnoremap <C-s> <C-\><C-n>:InteroHide<CR>
-au Filetype haskell nnoremap ,h :InteroHide<CR>
-au Filetype haskell nnoremap ,b :InteroLoadCurrentFile<CR>
-au Filetype haskell nnoremap ,B :InteroOpen<CR>:InteroLoadCurrentFile<CR><C-w>ja
-au Filetype haskell 
-au Filetype haskell nnoremap ,tt :InteroType<CR>
-au Filetype haskell nnoremap ,ti :InteroTypeInsert<CR>
-au Filetype haskell nnoremap <Leader>d :InteroGoToDef<CR>
-autocmd BufNewFile,BufRead *.hs setlocal tabstop=2 softtabstop=2 shiftwidth=2 smarttab expandtab
+augroup filetype_haskell
+  autocmd!
+  autocmd FileType haskell nnoremap <buffer> ,s :InteroOpen<CR>
+  autocmd FileType haskell nnoremap <buffer> ,S :InteroOpen<CR><C-w>ja
+  autocmd FileType haskell tnoremap <buffer> <C-s> <C-\><C-n>:InteroHide<CR>
+  autocmd FileType haskell nnoremap <buffer> ,h :InteroHide<CR>
+  autocmd FileType haskell nnoremap <buffer> ,b :InteroLoadCurrentFile<CR>
+  autocmd FileType haskell nnoremap <buffer> ,B :InteroOpen<CR>:InteroLoadCurrentFile<CR><C-w>ja
+  autocmd FileType haskell nnoremap <buffer> ,tt :InteroType<CR>
+  autocmd FileType haskell nnoremap <buffer> ,ti :InteroTypeInsert<CR>
+  autocmd FileType haskell nnoremap <buffer> <Leader>d :InteroGoToDef<CR>
+  autocmd FileType haskell setlocal tabstop=2 softtabstop=2 shiftwidth=2 smarttab expandtab
+augroup END
+
+" Rust
+let g:rustfmt_autosave = 1
 
 " Golang
 let g:go_auto_type_info = 1
@@ -143,28 +150,38 @@ let g:go_fmt_command = "goimports"
 let g:deoplete#sources#go#gocode_binary = '/home/danielkt/go/bin/gocode'
 let g:go_snippet_engine = "neosnippet"
 
-au FileType go nnoremap <Leader>d <Plug>(go-def)
-au FileType go nnoremap <Leader>ms <Plug>(go-def-split)
-au FileType go nnoremap <Leader>mv <Plug>(go-def-vertical)
-au FileType go nnoremap <Leader>mi <Plug>(go-info)
-au FileType go nnoremap <Leader>ml <Plug>(go-metalinter)
-au FileType go nnoremap <leader>mr  <Plug>(go-run)
-au FileType go nnoremap <leader>mb  <Plug>(go-build)
-au FileType go nnoremap <leader>mt  <Plug>(go-test)
-au FileType go nnoremap <leader>tc  <Plug>(go-test-compile)
-au FileType go nnoremap <Leader>mm <Plug>(go-doc)
-au FileType go nnoremap <Leader>me <Plug>(go-rename)
-au FileType go nnoremap <leader>rt <Plug>(go-run-tab)
-au FileType go nnoremap <Leader>rs <Plug>(go-run-split)
-au FileType go nnoremap <Leader>rv <Plug>(go-run-vertical)
-
-autocmd BufNewFile,BufRead *.go setlocal noet ts=4 sw=4 sts=4
+augroup filetype_go
+  autocmd!
+  autocmd FileType go nnoremap <buffer> <Leader>d <Plug>(go-def)
+  autocmd FileType go nnoremap <buffer> <Leader>ms <Plug>(go-def-split)
+  autocmd FileType go nnoremap <buffer> <Leader>mv <Plug>(go-def-vertical)
+  autocmd FileType go nnoremap <buffer> <Leader>mi <Plug>(go-info)
+  autocmd FileType go nnoremap <buffer> <Leader>ml <Plug>(go-metalinter)
+  autocmd FileType go nnoremap <buffer> <leader>mr  <Plug>(go-run)
+  autocmd FileType go nnoremap <buffer> <leader>mb  <Plug>(go-build)
+  autocmd FileType go nnoremap <buffer> <leader>mt  <Plug>(go-test)
+  autocmd FileType go nnoremap <buffer> <leader>tc  <Plug>(go-test-compile)
+  autocmd FileType go nnoremap <buffer> <Leader>mm <Plug>(go-doc)
+  autocmd FileType go nnoremap <buffer> <Leader>me <Plug>(go-rename)
+  autocmd FileType go nnoremap <buffer> <leader>rt <Plug>(go-run-tab)
+  autocmd FileType go nnoremap <buffer> <Leader>rs <Plug>(go-run-split)
+  autocmd FileType go nnoremap <buffer> <Leader>rv <Plug>(go-run-vertical)
+  autocmd FileType go setlocal noet ts=4 sw=4 sts=4
+augroup END
 
 " Terraform
 let g:terraform_fmt_on_save=1
 
 " Markdown
-autocmd BufNewFile,BufReadPost *.md setl ts=4 sw=4 sts=4 expandtab
+augroup filetype_markdown
+  autocmd!
+  autocmd FileType markdown setl ts=4 sw=4 sts=4 expandtab
+augroup END
+
+augroup nonvim
+   au!
+   au BufRead *.png,*.jpg,*.pdf,*.gif,*.xls*,*.ppt*,*.doc*,*.rtf sil exe "!xdg-open " . shellescape(expand("%:p")) | bd | let &ft=&ft
+augroup end
 
 " should probably use leader
 nmap <leader>s :NERDTreeToggle<CR>
