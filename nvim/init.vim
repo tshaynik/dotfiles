@@ -12,10 +12,12 @@ Plug 'airblade/vim-rooter'
 Plug 'kien/ctrlp.vim'
 "Plug 'vim-ctrlspace/vim-ctrlspace'
 "
-" Nerdtree
-Plug 'scrooloose/nerdcommenter'
-Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
-Plug 'Xuyuanp/nerdtree-git-plugin'
+" File Navigation
+"Plug 'scrooloose/nerdcommenter'
+"Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
+"Plug 'Xuyuanp/nerdtree-git-plugin'
+Plug 'justinmk/vim-dirvish'
+Plug 'kristijanhusak/vim-dirvish-git'
 
 " Completion
 Plug 'ervandew/supertab'
@@ -65,6 +67,7 @@ Plug 'eagletmt/neco-ghc'
 
 " Rust
 Plug 'rust-lang/rust.vim'
+Plug 'racer-rust/vim-racer'
 
 " Bash
 
@@ -143,6 +146,12 @@ augroup END
 
 " Rust
 let g:rustfmt_autosave = 1
+augroup filetype_rust
+  autocmd FileType rust nnoremap <buffer> <Leader>d <Plug>(rust-def)
+  autocmd FileType rust nnoremap <buffer> <Leader>ms <Plug>(rust-def-split)
+  autocmd FileType rust nnoremap <buffer> <Leader>mv <Plug>(rust-def-vertical)
+  autocmd FileType rust nnoremap <buffer> <Leader>md <Plug>(rust-doc)
+augroup END
 
 " Golang
 let g:go_auto_type_info = 1
@@ -183,14 +192,15 @@ augroup nonvim
    au BufRead *.png,*.jpg,*.pdf,*.gif,*.xls*,*.ppt*,*.doc*,*.rtf sil exe "!xdg-open " . shellescape(expand("%:p")) | bd | let &ft=&ft
 augroup end
 
-" should probably use leader
-nmap <leader>s :NERDTreeToggle<CR>
 
 " Files
 nnoremap <leader>fs :w<CR>
-nnoremap <leader>fc :e~/.config/nvim/init.vim<CR>
+nnoremap <leader>fc :tabnew ~/.config/nvim/init.vim<CR>
 nnoremap <leader>cd :cd<CR>
 
+nnoremap <leader>ss :e.<CR>
+nnoremap <leader>sp :sp.<CR>
+nnoremap <leader>vs :vs.<CR>
 " this kind of works, but only because of 
 " vim-rooter
 nmap <leader>/ :Ag<CR>
