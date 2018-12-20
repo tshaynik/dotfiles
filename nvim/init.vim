@@ -13,7 +13,7 @@ Plug 'kien/ctrlp.vim'
 "Plug 'vim-ctrlspace/vim-ctrlspace'
 "
 " File Navigation
-"Plug 'scrooloose/nerdcommenter'
+Plug 'scrooloose/nerdcommenter'
 "Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
 "Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'justinmk/vim-dirvish'
@@ -67,7 +67,7 @@ Plug 'eagletmt/neco-ghc'
 
 " Rust
 Plug 'rust-lang/rust.vim'
-Plug 'racer-rust/vim-racer'
+Plug 'sebastianmarkow/deoplete-rust'
 
 " Bash
 
@@ -142,16 +142,18 @@ augroup filetype_haskell
   autocmd FileType haskell nnoremap <buffer> ,ti :InteroTypeInsert<CR>
   autocmd FileType haskell nnoremap <buffer> <Leader>d :InteroGoToDef<CR>
   autocmd FileType haskell setlocal tabstop=2 softtabstop=2 shiftwidth=2 smarttab expandtab
-augroup END
+augroup end
 
 " Rust
 let g:rustfmt_autosave = 1
-augroup filetype_rust
-  autocmd FileType rust nnoremap <buffer> <Leader>d <Plug>(rust-def)
-  autocmd FileType rust nnoremap <buffer> <Leader>ms <Plug>(rust-def-split)
-  autocmd FileType rust nnoremap <buffer> <Leader>mv <Plug>(rust-def-vertical)
-  autocmd FileType rust nnoremap <buffer> <Leader>md <Plug>(rust-doc)
-augroup END
+let g:deoplete#sources#rust#racer_binary='/usr/bin/racer'
+let g:deoplete#sources#rust#rust_source_path='$HOME/ref/rust/src'
+
+augroup rust-mapping
+  autocmd!
+  autocmd filetype rust nnoremap <buffer> gD <Plug>DeopleteRustGoToDefinitionTab
+augroup end
+
 
 " Golang
 let g:go_auto_type_info = 1
@@ -176,7 +178,7 @@ augroup filetype_go
   autocmd FileType go nnoremap <buffer> <Leader>rs <Plug>(go-run-split)
   autocmd FileType go nnoremap <buffer> <Leader>rv <Plug>(go-run-vertical)
   autocmd FileType go setlocal noet ts=4 sw=4 sts=4
-augroup END
+augroup end
 
 " Terraform
 let g:terraform_fmt_on_save=1
@@ -185,7 +187,7 @@ let g:terraform_fmt_on_save=1
 augroup filetype_markdown
   autocmd!
   autocmd FileType markdown setl ts=4 sw=4 sts=4 expandtab
-augroup END
+augroup end
 
 augroup nonvim
    au!
@@ -199,7 +201,9 @@ nnoremap <leader>fc :tabnew ~/.config/nvim/init.vim<CR>
 nnoremap <leader>cd :cd<CR>
 
 nnoremap <leader>ss :e.<CR>
+nnoremap <leader>sS :tabnew.<CR>
 nnoremap <leader>sp :sp.<CR>
+nnoremap <leader>sv :vs.<CR>
 nnoremap <leader>vs :vs.<CR>
 " this kind of works, but only because of 
 " vim-rooter
