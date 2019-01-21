@@ -14,10 +14,10 @@ Plug 'kien/ctrlp.vim'
 "
 " File Navigation
 Plug 'scrooloose/nerdcommenter'
-"Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
-"Plug 'Xuyuanp/nerdtree-git-plugin'
-Plug 'justinmk/vim-dirvish'
-Plug 'kristijanhusak/vim-dirvish-git'
+Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
+Plug 'Xuyuanp/nerdtree-git-plugin'
+"Plug 'justinmk/vim-dirvish'
+"Plug 'kristijanhusak/vim-dirvish-git'
 
 " Completion
 Plug 'ervandew/supertab'
@@ -200,7 +200,8 @@ nnoremap <leader>fs :w<CR>
 nnoremap <leader>fc :tabnew ~/.config/nvim/init.vim<CR>
 nnoremap <leader>cd :cd<CR>
 
-nnoremap <leader>ss :e.<CR>
+"nnoremap <leader>ss :e.<CR>
+nnoremap <leader>ss :NERDTreeToggle<CR>
 nnoremap <leader>sS :tabnew.<CR>
 nnoremap <leader>sp :sp.<CR>
 nnoremap <leader>sv :vs.<CR>
