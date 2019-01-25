@@ -69,6 +69,9 @@ Plug 'eagletmt/neco-ghc'
 Plug 'rust-lang/rust.vim'
 Plug 'sebastianmarkow/deoplete-rust'
 
+" Nix
+Plug 'LnL7/vim-nix'
+
 " Bash
 
 """"""""""""""""""""""""""""""""
