@@ -163,6 +163,7 @@ let g:go_auto_type_info = 1
 let g:go_fmt_command = "goimports"
 let g:deoplete#sources#go#gocode_binary = '/home/danielkt/go/bin/gocode'
 let g:go_snippet_engine = "neosnippet"
+let g:go_version_warning = 0
 
 augroup filetype_go
   autocmd!
