@@ -77,6 +77,8 @@ Plug 'LnL7/vim-nix'
 """"""""""""""""""""""""""""""""
 " Tool Specific Plugins        "
 """"""""""""""""""""""""""""""""
+" Puppet
+Plug 'rodjek/vim-puppet'
 " Salt
 Plug 'saltstack/salt-vim'
 " Terraform
