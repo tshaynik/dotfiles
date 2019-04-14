@@ -6,6 +6,7 @@ Plug 'tpope/vim-surround'
 Plug 'Raimondi/delimitMate'
 
 " Files
+Plug '/run/current-system/sw/bin/fzf'
 Plug 'junegunn/fzf.vim'
 Plug 'airblade/vim-rooter'
 "Plug 'Shougo/denite.nvim'
@@ -15,7 +16,7 @@ Plug 'kien/ctrlp.vim'
 " File Navigation
 Plug 'scrooloose/nerdcommenter'
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
-Plug 'Xuyuanp/nerdtree-git-plugin'
+"Plug 'Xuyuanp/nerdtree-git-plugin'
 "Plug 'justinmk/vim-dirvish'
 "Plug 'kristijanhusak/vim-dirvish-git'
 
@@ -33,7 +34,8 @@ Plug 'airblade/vim-gitgutter'
 "Plug 'dracula/vim', { 'as': 'dracula' }
 "Plug 'tyrannicaltoucan/vim-deep-space'
 "Plug 'AlessandroYorba/Sierra'
-Plug 'ajmwagar/vim-deus'
+"Plug 'ajmwagar/vim-deus'
+Plug 'AlessandroYorba/Alduin'
 
 
 " Appearance
@@ -43,7 +45,7 @@ Plug 'vim-airline/vim-airline'
 Plug 'neomake/neomake'
 
 " Repl
-Plug 'hkupty/iron.nvim', { 'do': ':UpdateRemotePlugins' }
+"Plug 'hkupty/iron.nvim', { 'do': ':UpdateRemotePlugins' }
 
 """""""""""""""""""""""""""""""
 " Language Specific Plugins   "
@@ -60,8 +62,8 @@ Plug 'davidhalter/jedi-vim'
 Plug 'zchee/deoplete-jedi'
 
 " Haskell
-"Plug 'neovimhaskell/haskell-vim'
-Plug 'urso/haskell_syntax.vim'
+Plug 'neovimhaskell/haskell-vim'
+"Plug 'urso/haskell_syntax.vim'
 Plug 'parsonsmatt/intero-neovim'
 Plug 'eagletmt/neco-ghc'
 
@@ -71,6 +73,9 @@ Plug 'sebastianmarkow/deoplete-rust'
 
 " Nix
 Plug 'LnL7/vim-nix'
+
+" Lilypond
+Plug 'gisraptor/vim-lilypond-integrator'
 
 " Bash
 
@@ -128,30 +133,38 @@ set mouse=a
 
 " `let`tings
 let NERDTreeShowHidden=1
-let g:deoplete#enable_at_startup = 1
+"let g:deoplete#enable_at_startup = 1
 
 "HASKELL
 setlocal omnifunc=necoghc#omnifunc
 let g:intero_type_on_hover = 1
-
+"let g:intero_backend = {
+        "\ 'command': 'cabal repl',
+        "\ 'options': '',
+        "\ 'cwd': expand('%:p:h'),
+        "\}
+let g:intero_backend = {
+        \ 'command': 'ghci',
+        \ 'cwd': expand('%:p:h'),
+        \}
 "let g:haskell_classic_highlighting = 1
 augroup filetype_haskell
   autocmd!
-  autocmd FileType haskell nnoremap <buffer> ,s :InteroOpen<CR>
-  autocmd FileType haskell nnoremap <buffer> ,S :InteroOpen<CR><C-w>ja
-  autocmd FileType haskell tnoremap <buffer> <C-s> <C-\><C-n>:InteroHide<CR>
-  autocmd FileType haskell nnoremap <buffer> ,h :InteroHide<CR>
-  autocmd FileType haskell nnoremap <buffer> ,b :InteroLoadCurrentFile<CR>
-  autocmd FileType haskell nnoremap <buffer> ,B :InteroOpen<CR>:InteroLoadCurrentFile<CR><C-w>ja
-  autocmd FileType haskell nnoremap <buffer> ,tt :InteroType<CR>
-  autocmd FileType haskell nnoremap <buffer> ,ti :InteroTypeInsert<CR>
-  autocmd FileType haskell nnoremap <buffer> <Leader>d :InteroGoToDef<CR>
+  autocmd FileType haskell nnoremap <buffer> <leader>ho :InteroOpen<CR>
+  autocmd FileType haskell nnoremap <buffer> <leader>hO :InteroOpen<CR><C-w>ja
+  autocmd FileType haskell nnoremap <buffer> <leader>hh :InteroHide<CR>
+  autocmd FileType haskell nnoremap <buffer> <leader>hl :InteroLoadCurrentFile<CR>
+  autocmd FileType haskell nnoremap <buffer> <leader>hL :InteroOpen<CR>:InteroLoadCurrentFile<CR><C-w>ja
+  autocmd FileType haskell nnoremap <buffer> <leader>ht :InteroType<CR>
+  autocmd FileType haskell nnoremap <buffer> <leader>hT :InteroTypeInsert<CR>
+  autocmd FileType haskell nnoremap <buffer> <Leader>hd :InteroGoToDef<CR>
+  autocmd FileType haskell tnoremap <buffer> <C-h> <C-\><C-n>:InteroHide<CR>
   autocmd FileType haskell setlocal tabstop=2 softtabstop=2 shiftwidth=2 smarttab expandtab
 augroup end
 
 " Rust
 let g:rustfmt_autosave = 1
-let g:deoplete#sources#rust#racer_binary='/usr/bin/racer'
+let g:deoplete#sources#rust#racer_binary='/home/mandolin/.cargo/bin/racer'
 let g:deoplete#sources#rust#rust_source_path='$HOME/ref/rust/src'
 
 augroup rust-mapping
@@ -274,18 +287,10 @@ nnoremap <leader>y "+y
 nnoremap <leader>p "+p 
 
 " Colours!
-" color dracula
-"set termguicolors
-"let g:sierra_Sunset = 1
-"colorscheme sierra 
-set t_Co=256
-set termguicolors
-let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
-let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
-set background=dark " Setting dark mode
-colorscheme deus
+let g:alduin_Shout_Dragon_Aspect = 1
+let g:alduin_Shout_Fire_Breath = 1
+colorscheme alduin
 
-let g:deus_termcolors=256
 
 " Run Neomake
 call neomake#configure#automake('nw', 1000)
