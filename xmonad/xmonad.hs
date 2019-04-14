@@ -16,11 +16,11 @@ main = do
     spawn "stalonetray"
     spawn "volumeicon"
     spawn "nm-applet"
-    xmproc <- spawnPipe "/usr/bin/xmobar ~/.xmobarrc"
+    xmproc <- spawnPipe "xmobar ~/.xmobarrc"
     xmonad $ myDesktop xmproc `additionalKeys` myKeys
 
 myDesktop xmproc = desktopConfig 
-      { terminal = "/usr/bin/kitty"
+      { terminal = "kitty"
       -- Key remapping
       , modMask  = myModMask
 
@@ -36,6 +36,9 @@ myKeys =
   [ ((0, xK_Print),
 		 spawn "scrot -z -e 'mv $f ~/Pictures'") -- Screenshots
 
+  , ((myModMask .|. shiftMask, xK_l),
+      spawn "slock")
+
   -- Volume
   -- Mute volume.
   , ((0, xF86XK_AudioMute),
@@ -47,18 +50,25 @@ myKeys =
   , ((0, xF86XK_AudioRaiseVolume),
    	 spawn "amixer -q set Master 5%+")
 
-  -- Keyboard Layouts
-  , ((myModMask, xK_F12),
-   	 spawn "setxkbmap us")
-  , ((myModMask, xK_F11),
-   	 spawn "setxkbmap ca")
-  , ((myModMask, xK_F10),
-   	 spawn "setxkbmap il")
-
   -- App shortcuts
   , ((myModMask, xK_F1),
    	spawn "firefox")
   , ((myModMask, xK_F2),
+   	spawn "firefox --private-window")
+  , ((myModMask, xK_F3),
    	spawn "pcmanfm")
+
+  , ((myModMask, xK_F5),
+   	spawn "xrandr --auto")
+  , ((myModMask, xK_F6),
+   	spawn "xrandr --auto; xrandr --output eDP-1 --off")
+
+  -- Keyboard Layouts
+  , ((myModMask, xK_F10),
+   	 spawn "setxkbmap il")
+  , ((myModMask, xK_F11),
+   	 spawn "setxkbmap ca")
+  , ((myModMask, xK_F12),
+   	 spawn "setxkbmap us")
   ]
 
