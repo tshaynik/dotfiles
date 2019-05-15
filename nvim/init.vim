@@ -23,6 +23,7 @@ Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
 " Completion
 Plug 'ervandew/supertab'
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+Plug 'Shougo/neco-syntax'
 Plug 'Shougo/neosnippet.vim'
 Plug 'Shougo/neosnippet-snippets'
 
@@ -63,7 +64,6 @@ Plug 'zchee/deoplete-jedi'
 
 " Haskell
 Plug 'neovimhaskell/haskell-vim'
-"Plug 'urso/haskell_syntax.vim'
 Plug 'parsonsmatt/intero-neovim'
 Plug 'eagletmt/neco-ghc'
 
@@ -76,7 +76,9 @@ Plug 'LnL7/vim-nix'
 
 " Lilypond
 Plug 'gisraptor/vim-lilypond-integrator'
-Plug 'leesavide/abc-vim'
+
+" ABC notation
+"Plug 'leesavide/abc-vim'
 
 " Bash
 
@@ -109,7 +111,7 @@ set nocompatible
 set hidden
 set autoread
 "set showtabline=0
-"set showmatch               " Show matching brackets.
+set showmatch               " Show matching brackets.
 "set ignorecase              " Do case insensitive matching
 "set mouse=v                 " middle-click paste with mouse
 "set hlsearch                " highlight search results
@@ -134,7 +136,7 @@ set mouse=a
 
 " `let`tings
 let NERDTreeShowHidden=1
-"let g:deoplete#enable_at_startup = 1
+let g:deoplete#enable_at_startup = 1
 
 "HASKELL
 setlocal omnifunc=necoghc#omnifunc
