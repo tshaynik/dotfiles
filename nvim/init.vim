@@ -76,6 +76,7 @@ Plug 'LnL7/vim-nix'
 
 " Lilypond
 Plug 'gisraptor/vim-lilypond-integrator'
+Plug 'leesavide/abc-vim'
 
 " Bash
 
@@ -187,10 +188,10 @@ augroup filetype_go
   autocmd FileType go nnoremap <buffer> <Leader>mv <Plug>(go-def-vertical)
   autocmd FileType go nnoremap <buffer> <Leader>mi <Plug>(go-info)
   autocmd FileType go nnoremap <buffer> <Leader>ml <Plug>(go-metalinter)
-  autocmd FileType go nnoremap <buffer> <leader>mr  <Plug>(go-run)
-  autocmd FileType go nnoremap <buffer> <leader>mb  <Plug>(go-build)
-  autocmd FileType go nnoremap <buffer> <leader>mt  <Plug>(go-test)
-  autocmd FileType go nnoremap <buffer> <leader>tc  <Plug>(go-test-compile)
+  autocmd FileType go nnoremap <buffer> <leader>mr <Plug>(go-run)
+  autocmd FileType go nnoremap <buffer> <leader>mb <Plug>(go-build)
+  autocmd FileType go nnoremap <buffer> <leader>mt <Plug>(go-test)
+  autocmd FileType go nnoremap <buffer> <leader>tc <Plug>(go-test-compile)
   autocmd FileType go nnoremap <buffer> <Leader>mm <Plug>(go-doc)
   autocmd FileType go nnoremap <buffer> <Leader>me <Plug>(go-rename)
   autocmd FileType go nnoremap <buffer> <leader>rt <Plug>(go-run-tab)
@@ -213,6 +214,10 @@ augroup nonvim
    au BufRead *.png,*.jpg,*.pdf,*.gif,*.xls*,*.ppt*,*.doc*,*.rtf sil exe "!xdg-open " . shellescape(expand("%:p")) | bd | let &ft=&ft
 augroup end
 
+augroup filetype_lilypond
+  autocmd!
+  autocmd FileType lilypond nnoremap <buffer> <Leader>b :!lilypond %<CR>
+augroup end
 
 " Files
 nnoremap <leader>fs :w<CR>
