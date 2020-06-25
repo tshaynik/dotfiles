@@ -19,7 +19,7 @@
     plugins = with pkgs; [
       # General
       vimPlugins.delimitMate
-      #vimPlugins.fzf.vim
+      vimPlugins.fzf-vim
       vimPlugins.vim-surround
       vimPlugins.vim-rooter
       vimPlugins.vim-tmux-navigator
@@ -27,7 +27,9 @@
       vimPlugins.nerdcommenter
       vimPlugins.supertab
       vimPlugins.vim-airline
-      vimPlugins.neomake
+
+      vimPlugins.vim-fugitive
+      vimPlugins.vim-gitgutter
 
       # Language
       vimPlugins.vim-markdown
@@ -155,10 +157,6 @@
       nnoremap <leader>y "+y 
       nnoremap <leader>p "+p 
 
-     colorscheme gruvbox
-
-      " Run Neomake
-      call neomake#configure#automake('nw', 1000)
 
       " Git bindings
       nnoremap <leader>ga :Git add %:p<CR><CR>
@@ -170,6 +168,8 @@
       nnoremap <leader>ce :setlocal spell spelllang=en_ca<CR>
       nnoremap <leader>cf :setlocal spell spelllang=fr<CR>
       nnoremap <leader>cn :setlocal nospell<CR>
+
+      colorscheme gruvbox
     '';
   };
 
