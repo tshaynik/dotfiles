@@ -6,7 +6,7 @@ Plug 'tpope/vim-surround'
 Plug 'Raimondi/delimitMate'
 
 " Files
-Plug '/run/current-system/sw/bin/fzf'
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'airblade/vim-rooter'
 "Plug 'Shougo/denite.nvim'
@@ -46,7 +46,7 @@ Plug 'vim-airline/vim-airline'
 Plug 'neomake/neomake'
 
 " Repl
-"Plug 'hkupty/iron.nvim', { 'do': ':UpdateRemotePlugins' }
+Plug 'hkupty/iron.nvim', { 'do': ':UpdateRemotePlugins' }
 
 """""""""""""""""""""""""""""""
 " Language Specific Plugins   "
@@ -61,11 +61,14 @@ Plug 'majutsushi/tagbar'
 " Python
 Plug 'davidhalter/jedi-vim'
 Plug 'zchee/deoplete-jedi'
+Plug 'psf/black', { 'branch': 'stable' }
 
 " Haskell
 Plug 'neovimhaskell/haskell-vim'
 Plug 'parsonsmatt/intero-neovim'
 Plug 'eagletmt/neco-ghc'
+
+Plug 'tidalcycles/vim-tidal'
 
 " Rust
 Plug 'rust-lang/rust.vim'
@@ -74,13 +77,17 @@ Plug 'sebastianmarkow/deoplete-rust'
 " Nix
 Plug 'LnL7/vim-nix'
 
+" Dhall
+Plug 'vmchale/dhall-vim'
+
 " Lilypond
 Plug 'gisraptor/vim-lilypond-integrator'
 
 " ABC notation
 "Plug 'leesavide/abc-vim'
 
-" Bash
+" SQL
+Plug 'vim-scripts/dbext.vim'
 
 """"""""""""""""""""""""""""""""
 " Tool Specific Plugins        "
@@ -91,6 +98,8 @@ Plug 'rodjek/vim-puppet'
 Plug 'saltstack/salt-vim'
 " Terraform
 Plug 'hashivim/vim-terraform'
+"hledger
+Plug 'ledger/vim-ledger'
 
 " Other
 "Plug 'vim-pandoc/vim-pandoc'
@@ -141,16 +150,14 @@ let g:deoplete#enable_at_startup = 1
 "HASKELL
 setlocal omnifunc=necoghc#omnifunc
 let g:intero_type_on_hover = 1
-"let g:intero_backend = {
-        "\ 'command': 'cabal repl',
-        "\ 'options': '',
-        "\ 'cwd': expand('%:p:h'),
-        "\}
 let g:intero_backend = {
-        \ 'command': 'ghci',
-        \ 'cwd': expand('%:p:h'),
-        \}
-"let g:haskell_classic_highlighting = 1
+	\ 'command': 'cabal repl',
+	\ 'options': '',
+	\ 'cwd': expand('%:p:h'),
+	\}
+
+let g:tidal_target = "terminal"
+
 augroup filetype_haskell
   autocmd!
   autocmd FileType haskell nnoremap <buffer> <leader>ho :InteroOpen<CR>
@@ -202,6 +209,10 @@ augroup filetype_go
   autocmd FileType go setlocal noet ts=4 sw=4 sts=4
 augroup end
 
+augroup filetype_sql
+  autocmd FileType sql setlocal noet ts=4 sw=4 sts=4
+augroup end
+
 " Terraform
 let g:terraform_fmt_on_save=1
 
@@ -209,6 +220,7 @@ let g:terraform_fmt_on_save=1
 augroup filetype_markdown
   autocmd!
   autocmd FileType markdown setl ts=4 sw=4 sts=4 expandtab
+  autocmd FileType markdown nnoremap <buffer> <Leader>b :w<CR>:!pandoc % -o %:r.pdf --pdf-engine=xelatex --variable mainfont="DejaVu Serif" --variable monofont="Fira Code" --variable mathfont="Fira Code"<CR>
 augroup end
 
 augroup nonvim
@@ -218,7 +230,11 @@ augroup end
 
 augroup filetype_lilypond
   autocmd!
-  autocmd FileType lilypond nnoremap <buffer> <Leader>b :!lilypond %<CR>
+  autocmd FileType lilypond nnoremap <buffer> <Leader>b :w<CR>:!lilypond %<CR>
+  "autocmd FileType lilypond nnoremap <buffer> <Leader>o :!xdg-open out/%:t:r.pdf<CR>
+  "autocmd FileType lilypond nnoremap <buffer> <Leader>p :!timidity out/%:t:r.midi<CR>
+  autocmd FileType lilypond nnoremap <buffer> <Leader>o :!xdg-open %:t:r.pdf<CR>
+  autocmd FileType lilypond nnoremap <buffer> <Leader>p :!timidity %:t:r.midi<CR>
 augroup end
 
 " Files
@@ -228,6 +244,7 @@ nnoremap <leader>cd :cd<CR>
 
 "nnoremap <leader>ss :e.<CR>
 nnoremap <leader>ss :NERDTreeToggle<CR>
+nnoremap <Tab> :NERDTreeToggle<CR>
 nnoremap <leader>sS :tabnew.<CR>
 nnoremap <leader>sp :sp.<CR>
 nnoremap <leader>sv :vs.<CR>
@@ -308,3 +325,7 @@ nnoremap <leader>gb :Gblame<CR>
 nnoremap <leader>gs :Gstatus<CR>
 nnoremap <leader>ggt :GitGutterToggle<CR>
 
+" Spell checking
+nnoremap <leader>ce :setlocal spell spelllang=en_ca<CR>
+nnoremap <leader>cf :setlocal spell spelllang=fr<CR>
+nnoremap <leader>cn :setlocal nospell<CR>
