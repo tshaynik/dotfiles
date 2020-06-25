@@ -16,29 +16,30 @@
     viAlias = true;
     vimAlias = true;
 
-    plugins = with pkgs; [
+    plugins = with pkgs.vimPlugins; [
       # General
-      vimPlugins.delimitMate
-      vimPlugins.fzf-vim
-      vimPlugins.vim-surround
-      vimPlugins.vim-rooter
-      vimPlugins.vim-tmux-navigator
-      vimPlugins.nerdtree
-      vimPlugins.nerdcommenter
-      vimPlugins.supertab
-      vimPlugins.vim-airline
+      delimitMate
+      fzf-vim
+      vim-surround
+      vim-rooter
+      vim-tmux-navigator
+      nerdtree
+      nerdcommenter
+      supertab
+      vim-airline
 
-      vimPlugins.vim-fugitive
-      vimPlugins.vim-gitgutter
+      vim-fugitive
+      vim-gitgutter
 
       # Language
-      vimPlugins.vim-markdown
-      vimPlugins.vim-nix
-      vimPlugins.vim-terraform
-      vimPlugins.vim-yaml
+      vim-markdown
+      vim-nix
+      vim-terraform
+      vim-yaml
+
 
       #Theme
-      vimPlugins.gruvbox
+      gruvbox
 
     ];
     extraConfig = ''
@@ -182,23 +183,23 @@
       bind - split-window -v -c "#{pane_current_path}"
     '';
 
-    plugins = with pkgs; [
-      tmuxPlugins.cpu
-      tmuxPlugins.vim-tmux-navigator
-      tmuxPlugins.gruvbox
+    plugins = with pkgs.tmuxPlugins; [
+      cpu
+      vim-tmux-navigator
+      gruvbox
       {
-        plugin = tmuxPlugins.resurrect;
+        plugin = resurrect;
         extraConfig = "set -g @resurrect-strategy-nvim 'session'";
       }
       {
-        plugin = tmuxPlugins.continuum;
+        plugin = continuum;
         extraConfig = ''
           set -g @continuum-restore 'on'
           set -g @continuum-save-interval '60' # minutes
         '';
       }
       {
-        plugin = tmuxPlugins.open;
+        plugin = open;
         extraConfig = ''
           set -g @open-S 'https://www.duckduckgo.com/'
         '';
