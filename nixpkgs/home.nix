@@ -1,9 +1,9 @@
 { pkgs, ... }:
 
 {
-  home.packages = [
-    pkgs.htop
-    pkgs.fortune
+  home.packages = with pkgs; [
+    htop
+    fortune
   ];
 
   programs.home-manager = {
@@ -12,7 +12,7 @@
 
   programs.neovim = {
     enable = true;
-    extraPython3Packages = (ps: with ps; [ python-language-server black ]);
+    extraPython3Packages = (ps: with ps; [ python-language-server mypy pylint black ]);
     viAlias = true;
     vimAlias = true;
 
@@ -37,6 +37,8 @@
       vim-terraform
       vim-yaml
 
+      # Python
+      semshi
 
       #Theme
       gruvbox
@@ -205,5 +207,9 @@
         '';
       }
     ];
+  };
+
+  services.dunst = {
+    enable = true;
   };
 }
