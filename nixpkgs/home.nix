@@ -212,4 +212,8 @@
   services.dunst = {
     enable = true;
   };
+
+  xdg = {
+    enable = true;
+  };
 }
