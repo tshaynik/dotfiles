@@ -4,6 +4,7 @@
   home.packages = with pkgs; [
     htop
     fortune
+    nixpkgs-fmt
 
     (python37Full.withPackages(ps: with ps; [ 
       jedi mypy pylint black ipython jupyterlab 
@@ -75,6 +76,7 @@
       let g:ale_fixers = {
       \   '*': ['remove_trailing_lines', 'trim_whitespace'],
       \   'python': ['black', 'isort'],
+      \   'nix': ['nixpkgs-fmt'],
       \}
 
 
