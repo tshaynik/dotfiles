@@ -4,6 +4,10 @@
   home.packages = with pkgs; [
     htop
     fortune
+
+    (python37Full.withPackages(ps: with ps; [ 
+      jedi mypy pylint black ipython jupyterlab 
+    ]))
   ];
 
   programs.home-manager = {
@@ -12,7 +16,7 @@
 
   programs.neovim = {
     enable = true;
-    extraPython3Packages = (ps: with ps; [ python-language-server mypy pylint black ]);
+    extraPython3Packages = (ps: with ps; [ python-language-server isort mypy pylint black ]);
     viAlias = true;
     vimAlias = true;
 
@@ -28,6 +32,8 @@
       supertab
       vim-airline
 
+      vim-obsession
+
       vim-fugitive
       vim-gitgutter
 
@@ -36,9 +42,12 @@
       vim-nix
       vim-terraform
       vim-yaml
+      deoplete-nvim
+      ale
 
       # Python
       semshi
+      deoplete-jedi
 
       #Theme
       gruvbox
@@ -61,6 +70,12 @@
       " `let`tings
       let NERDTreeShowHidden=1
       let g:deoplete#enable_at_startup = 1
+
+      let g:ale_fix_on_save = 1
+      let g:ale_fixers = {
+      \   '*': ['remove_trailing_lines', 'trim_whitespace'],
+      \   'python': ['black', 'isort'],
+      \}
 
 
       " Terraform
