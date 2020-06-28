@@ -105,7 +105,6 @@
 
       nnoremap <leader>nh :noh<CR>
 
-      " what was I just doing
       "nnoremap <leader>pf :Files<CR>
       "nnoremap <C-leader> :Ctrlleader<CR>
       nnoremap <leader>rf :History<CR>
@@ -117,8 +116,8 @@
       " windows
       nnoremap <leader>w <C-w>
       nnoremap <A-w> <C-w>
-      nnoremap <leader>w/ :vsp<CR><C-w>l
-      nnoremap <leader>w. :sp<CR><C-w>h
+      nnoremap <leader>\| :vsp<CR><C-w>l
+      nnoremap <leader>- :sp<CR><C-w>h
       nnoremap <leader>wd :close<CR>
 
       "" terminal support
@@ -159,7 +158,6 @@
       vnoremap <leader>p "+p 
       nnoremap <leader>y "+y 
       nnoremap <leader>p "+p 
-
 
       " Git bindings
       nnoremap <leader>ga :Git add %:p<CR><CR>
