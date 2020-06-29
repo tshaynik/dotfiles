@@ -2,6 +2,7 @@
 
 {
   home.packages = with pkgs; [
+    direnv
     htop
     fortune
     nixpkgs-fmt
@@ -146,6 +147,10 @@
   };
 
   services.dunst = {
+    enable = true;
+  };
+
+  services.lorri = {
     enable = true;
   };
 
