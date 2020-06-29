@@ -25,6 +25,21 @@
     enable = true;
   };
 
+  programs.kitty = {
+    enable = true;
+
+    font.package = pkgs.fira-code;
+    font.name = "Fira Code";
+
+    settings = {
+      font_size = 13;
+      scrollback_lines = 10000;
+      enable_audio_bell = false;
+      update_check_interval = 0;
+      copy_on_select = "yes";
+    };
+  };
+
   programs.neovim = {
     enable = true;
     extraPython3Packages = (ps: with ps; [ python-language-server isort mypy pylint black ]);
