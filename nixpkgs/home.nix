@@ -53,6 +53,7 @@
       vim-terraform
       vim-yaml
       deoplete-nvim
+      neco-syntax
       ale
 
       # Python
@@ -142,7 +143,6 @@
       recolor-darkcolor = "#ebdbb2"; # fg
       recolor = "true";
     };
-
   };
 
   services.dunst = {
