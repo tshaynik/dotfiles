@@ -119,6 +119,9 @@
   programs.zathura = {
     enable = true;
     options = {
+      selection-clipboard = "clipboard";
+
+      #colors
       notification-error-bg = "#282828"; # bg
       notification-error-fg = "#fb4934"; # bright:red
       notification-warning-bg = "#282828"; # bg
@@ -171,5 +174,6 @@
 
   xdg = {
     enable = true;
+    userDirs.enable = true;
   };
 }

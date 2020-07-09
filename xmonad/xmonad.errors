@@ -1,0 +1,23 @@
+
+xmonad.hs:27:49: warning: [-Wdeprecations]
+    In the use of ‘defaultConfig’
+    (imported from XMonad, but defined in XMonad.Config):
+    Deprecated: "Use def (from Data.Default, and re-exported by XMonad and XMonad.Config) instead."
+   |
+27 |       , manageHook = manageDocks <+> manageHook defaultConfig
+   |                                                 ^^^^^^^^^^^^^
+
+xmonad.hs:28:62: warning: [-Wdeprecations]
+    In the use of ‘defaultConfig’
+    (imported from XMonad, but defined in XMonad.Config):
+    Deprecated: "Use def (from Data.Default, and re-exported by XMonad and XMonad.Config) instead."
+   |
+28 |       , layoutHook = smartBorders . avoidStruts $ layoutHook defaultConfig
+   |                                                              ^^^^^^^^^^^^^
+
+xmonad.hs:37:1: warning: [-Wtabs]
+    Tab character found here, and in 13 further locations.
+    Please use spaces instead.
+   |
+37 |                  spawn "scrot -z -e 'mv $f ~/Pictures'") -- Screenshots
+   | ^^^^^^^^
