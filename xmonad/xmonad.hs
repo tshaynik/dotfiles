@@ -19,7 +19,7 @@ main = do
     xmproc <- spawnPipe "xmobar ~/.xmobarrc"
     xmonad $ myDesktop xmproc `additionalKeys` myKeys
 
-myDesktop xmproc = desktopConfig 
+myDesktop xmproc = desktopConfig
       { terminal = "kitty"
       -- Key remapping
       , modMask  = myModMask
@@ -64,11 +64,12 @@ myKeys =
    	spawn "xrandr --auto; xrandr --output eDP-1 --off")
 
   -- Keyboard Layouts
-  , ((myModMask, xK_F10),
+   , ((myModMask, xK_F9),
+   	 spawn "setxkbmap gr")
+ , ((myModMask, xK_F10),
    	 spawn "setxkbmap il")
   , ((myModMask, xK_F11),
    	 spawn "setxkbmap ca")
   , ((myModMask, xK_F12),
    	 spawn "setxkbmap us")
   ]
-
