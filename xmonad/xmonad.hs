@@ -34,7 +34,7 @@ myDesktop xmproc = desktopConfig
 
 myKeys =
   [ ((0, xK_Print),
-		 spawn "scrot -z -e 'mv $f ~/Pictures'") -- Screenshots
+      spawn "scrot -z -e 'mv $f ~/Pictures'") -- Screenshots
 
   , ((myModMask .|. shiftMask, xK_l),
       spawn "slock")
