@@ -1,11 +1,50 @@
 { pkgs, ... }:
 
+let
+  vim-lilypond = pkgs.vimUtils.buildVimPluginFrom2Nix {
+    pname = "vim-lilypond";
+    version = "2019-03-04";
+    src = pkgs.fetchFromGitHub {
+      owner = "sersorrel";
+      repo = "vim-lilypond";
+      rev = "5937606dc917a27c65474cdbb3b98cef2c67f078";
+      sha256 = "1mrzcb0yzqhmfhg5wga2ggy1nnkw7ljh0vmz6r9bc9hv5c7cpc0s";
+    };
+    meta.homepage = "https://github.com/sersorrel/vim-lilypond/";
+  };
+
+  vim-prolog = pkgs.vimUtils.buildVimPluginFrom2Nix {
+    pname = "vim-prolog";
+    version = "2013-08-25";
+    src = pkgs.fetchFromGitHub {
+      owner = "mxw";
+      repo = "vim-prolog";
+      rev = "093235a78012032b7d53b0e06757bf919380bf3b";
+      sha256 = "11mii54r8w83rlv4mic2j3v2jpna4d5gsyjpih0kp9jqkmqcq3zs";
+    };
+    meta.homepage = "https://github.com/mxw/vim-prolog/";
+  };
+
+  vim-rdf = pkgs.vimUtils.buildVimPluginFrom2Nix {
+    pname = "vim-rdf";
+    version = "2016-06-04";
+    src = pkgs.fetchFromGitHub {
+      owner = "niklasl";
+      repo = "vim-rdf";
+      rev = "4b3b4c9f079b65d2b525f567715f0aabe60cfdf3";
+      sha256 = "051piyf403k98zxjv0qm68qhgajwv57hblxdab2awsyvk9gzv5lc";
+    };
+    meta.homepage = "https://github.com/niklasl/vim-rdf/";
+  };
+
+in
 {
   home.packages = with pkgs; [
     direnv
     htop
     fortune
     nixpkgs-fmt
+    nerdfonts
 
     (
       python37Full.withPackages (
@@ -76,11 +115,22 @@
       semshi
       deoplete-jedi
 
+      # Haskell
+      ghcid
+
       #Theme
       gruvbox
 
+      vim-lilypond
+      vim-rdf
+      vim-prolog
     ];
     extraConfig = builtins.readFile (./extraconfig.vim);
+  };
+
+  programs.starship = {
+    enable = true;
+    enableZshIntegration = true;
   };
 
   programs.tmux = {
@@ -174,6 +224,5 @@
 
   xdg = {
     enable = true;
-    userDirs.enable = true;
   };
 }
