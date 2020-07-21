@@ -103,6 +103,8 @@ in
       vim-fugitive
       vim-gitgutter
 
+      wmgraphviz-vim
+
       # Language
       vim-markdown
       vim-nix
