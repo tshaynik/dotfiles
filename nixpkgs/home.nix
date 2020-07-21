@@ -44,7 +44,8 @@ in
     htop
     fortune
     nixpkgs-fmt
-    nerdfonts
+    rls
+    rustfmt
 
     (
       python37Full.withPackages (
@@ -117,6 +118,9 @@ in
 
       # Haskell
       ghcid
+
+      # Rust
+      deoplete-rust
 
       #Theme
       gruvbox

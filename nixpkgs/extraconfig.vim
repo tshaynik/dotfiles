@@ -16,12 +16,18 @@ let NERDTreeShowHidden=1
 let g:deoplete#enable_at_startup = 1
 
 let g:ale_fix_on_save = 1
+let g:ale_linters = {
+\ 'rust': ['rls']
+\}
+
 let g:ale_fixers = {
 \   '*': ['remove_trailing_lines', 'trim_whitespace'],
 \   'python': ['black', 'isort'],
 \   'nix': ['nixpkgs-fmt'],
+\   'rust': ['rustfmt'],
 \}
 
+let g:NERDDefaultAlign = 'left'
 
 " Terraform
 let g:terraform_fmt_on_save=1
@@ -129,5 +135,10 @@ nnoremap <leader>ggt :GitGutterToggle<CR>
 nnoremap <leader>ce :setlocal spell spelllang=en_ca<CR>
 nnoremap <leader>cf :setlocal spell spelllang=fr<CR>
 nnoremap <leader>cn :setlocal nospell<CR>
+
+au! BufNewFile,BufRead *.ttl,*.nt,*.nq  set filetype=turtle
+au! BufNewFile,BufRead *.trig  set filetype=trig
+au! BufNewFile,BufRead *.n3  set filetype=n3
+au! BufNewFile,BufRead *.jsonld  set filetype=jsonld
 
 colorscheme gruvbox
