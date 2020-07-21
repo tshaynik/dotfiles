@@ -28,6 +28,10 @@ let g:ale_fixers = {
 \   'rust': ['rustfmt'],
 \}
 
+let g:UltiSnipsExpandTrigger="<F2>"
+let g:UltiSnipsJumpForwardTrigger="<c-]>"
+let g:UltiSnipsJumpBackwardTrigger="<c-[>"
+
 let g:NERDDefaultAlign = 'left'
 
 " Terraform

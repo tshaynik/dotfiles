@@ -114,6 +114,9 @@ in
       neco-syntax
       ale
 
+      vim-snippets
+      ultisnips
+
       # Python
       semshi
       deoplete-jedi
