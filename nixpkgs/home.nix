@@ -114,8 +114,8 @@ in
       neco-syntax
       ale
 
-      vim-snippets
-      ultisnips
+      neosnippet-vim
+      neosnippet-snippets
 
       # Python
       semshi
