@@ -37,6 +37,18 @@ let
     meta.homepage = "https://github.com/niklasl/vim-rdf/";
   };
 
+  iron-nvim = pkgs.vimUtils.buildVimPluginFrom2Nix {
+    pname = "iron-nvim";
+    version = "2020-07-22";
+    src = pkgs.fetchFromGitHub {
+      owner = "hkupty";
+      repo = "iron.nvim";
+      rev = "4876bd3b2e358429eb2efb5adaa15f844e2edad1";
+      sha256 = "06yciigdsmnmfcgyc64m8yvlj6pj5fmz2pw4nvkk2ddqahrl3b7a";
+    };
+    meta.homepage = "https://github.com/hkupty/iron.nvim/";
+  };
+
 in
 {
   home.packages = with pkgs; [
@@ -52,7 +64,6 @@ in
         ps: with ps; [
           jedi
           mypy
-          pylint
           black
           ipython
           jupyterlab
@@ -81,10 +92,8 @@ in
   };
 
   programs.neovim = {
-    enable = true;
-    extraPython3Packages = (ps: with ps; [ python-language-server isort mypy pylint black ]);
-    viAlias = true;
-    vimAlias = true;
+    enable = false;
+    extraPython3Packages = (ps: with ps; [ python-language-server isort mypy black ]);
 
     plugins = with pkgs.vimPlugins; [
       # General
@@ -113,6 +122,7 @@ in
       deoplete-nvim
       neco-syntax
       ale
+      LanguageClient-neovim
 
       neosnippet-vim
       neosnippet-snippets
@@ -125,7 +135,7 @@ in
       ghcid
 
       # Rust
-      deoplete-rust
+      #deoplete-rust
 
       #Theme
       gruvbox
@@ -133,6 +143,7 @@ in
       vim-lilypond
       vim-rdf
       vim-prolog
+      iron-nvim
     ];
     extraConfig = builtins.readFile (./extraconfig.vim);
   };

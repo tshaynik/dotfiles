@@ -14,11 +14,19 @@ set mouse=a
 
 " `let`tings
 let NERDTreeShowHidden=1
+
 let g:deoplete#enable_at_startup = 1
 
+"set runtimepath+=~/.vim/plugged/deoplete.nvim/
+"call deoplete#custom#option('sources', {
+"\ '_': ['ale'],
+"\})
+
+
+" ale (language server protocol)
 let g:ale_fix_on_save = 1
 let g:ale_linters = {
-\ 'rust': ['rls']
+\ 'rust': ['rust-analyzer']
 \}
 
 let g:ale_fixers = {
@@ -28,7 +36,23 @@ let g:ale_fixers = {
 \   'rust': ['rustfmt'],
 \}
 
-" Note: It must be "imap" and "smap".  It uses <Plug> mappings.
+nnoremap <Leader>ag :ALEGoToDefinition<CR>
+nnoremap <Leader>as :ALEGoToDefinitionInSplit<CR>
+nnoremap <Leader>at :ALEGoToDefinitionInTab<CR>
+nnoremap <Leader>ah :ALEHover<CR>
+nnoremap <Leader>ar :ALERename<CR>
+nnoremap <Leader>ad :ALEDetail<CR>
+
+" fzf
+nnoremap <Leader>ff :Files<CR>
+nnoremap <Leader>fb :Buffers<CR>
+nnoremap <Leader>fr :Rg<CR>
+nnoremap <Leader>fc :Commits<CR>
+nnoremap <Leader>fm :Maps<CR>
+nnoremap <leader>fh :History<CR>
+nmap <leader>/ :Rg<CR>
+
+"" Note: It must be "imap" and "smap".  It uses <Plug> mappings.
 imap <C-k>     <Plug>(neosnippet_expand_or_jump)
 smap <C-k>     <Plug>(neosnippet_expand_or_jump)
 xmap <C-k>     <Plug>(neosnippet_expand_target)
@@ -82,11 +106,9 @@ augroup end
 
 " Files
 nnoremap <leader>fs :w<CR>
-nnoremap <leader>fc :tabnew ~/.config/nvim/init.vim<CR>
 nnoremap <leader>cd :cd<CR>
 
 "nnoremap <leader>ss :e.<CR>
-nnoremap <leader>ss :NERDTreeToggle<CR>
 nnoremap <Tab> :NERDTreeToggle<CR>
 nnoremap <leader>sS :tabnew.<CR>
 nnoremap <leader>sp :sp.<CR>
@@ -94,14 +116,11 @@ nnoremap <leader>sv :vs.<CR>
 nnoremap <leader>vs :vs.<CR>
 " this kind of works, but only because of
 " vim-rooter
-nmap <leader>/ :Ag<CR>
 
 nnoremap <leader>nh :noh<CR>
 
 "nnoremap <leader>pf :Files<CR>
 "nnoremap <C-leader> :Ctrlleader<CR>
-nnoremap <leader>rf :History<CR>
-nnoremap <leader>bb :Buffers<CR>
 nnoremap <leader>bn :bn<CR>
 nnoremap <leader>bp :bp<CR>
 nnoremap <leader><Tab> :b#<CR>
@@ -169,3 +188,24 @@ au! BufNewFile,BufRead *.n3  set filetype=n3
 au! BufNewFile,BufRead *.jsonld  set filetype=jsonld
 
 colorscheme gruvbox
+
+"packadd iron.nvim
+"lua << EOF
+
+"local iron = require('iron')
+
+"iron.core.add_repl_definitions {
+"  rust = {
+"    mycustom = {
+"      command = {"evcxr"}
+"    }
+"  }
+"}
+
+"iron.core.set_config {
+"  preferred = {
+"    python = "ipython",
+"    clojure = "lein"
+"  }
+"}
+"EOF
