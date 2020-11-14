@@ -1,55 +1,5 @@
 { pkgs, ... }:
 
-let
-  vim-lilypond = pkgs.vimUtils.buildVimPluginFrom2Nix {
-    pname = "vim-lilypond";
-    version = "2019-03-04";
-    src = pkgs.fetchFromGitHub {
-      owner = "sersorrel";
-      repo = "vim-lilypond";
-      rev = "5937606dc917a27c65474cdbb3b98cef2c67f078";
-      sha256 = "1mrzcb0yzqhmfhg5wga2ggy1nnkw7ljh0vmz6r9bc9hv5c7cpc0s";
-    };
-    meta.homepage = "https://github.com/sersorrel/vim-lilypond/";
-  };
-
-  vim-prolog = pkgs.vimUtils.buildVimPluginFrom2Nix {
-    pname = "vim-prolog";
-    version = "2013-08-25";
-    src = pkgs.fetchFromGitHub {
-      owner = "mxw";
-      repo = "vim-prolog";
-      rev = "093235a78012032b7d53b0e06757bf919380bf3b";
-      sha256 = "11mii54r8w83rlv4mic2j3v2jpna4d5gsyjpih0kp9jqkmqcq3zs";
-    };
-    meta.homepage = "https://github.com/mxw/vim-prolog/";
-  };
-
-  vim-rdf = pkgs.vimUtils.buildVimPluginFrom2Nix {
-    pname = "vim-rdf";
-    version = "2016-06-04";
-    src = pkgs.fetchFromGitHub {
-      owner = "niklasl";
-      repo = "vim-rdf";
-      rev = "4b3b4c9f079b65d2b525f567715f0aabe60cfdf3";
-      sha256 = "051piyf403k98zxjv0qm68qhgajwv57hblxdab2awsyvk9gzv5lc";
-    };
-    meta.homepage = "https://github.com/niklasl/vim-rdf/";
-  };
-
-  iron-nvim = pkgs.vimUtils.buildVimPluginFrom2Nix {
-    pname = "iron-nvim";
-    version = "2020-07-22";
-    src = pkgs.fetchFromGitHub {
-      owner = "hkupty";
-      repo = "iron.nvim";
-      rev = "4876bd3b2e358429eb2efb5adaa15f844e2edad1";
-      sha256 = "06yciigdsmnmfcgyc64m8yvlj6pj5fmz2pw4nvkk2ddqahrl3b7a";
-    };
-    meta.homepage = "https://github.com/hkupty/iron.nvim/";
-  };
-
-in
 {
   home.packages = with pkgs; [
     direnv
@@ -91,62 +41,6 @@ in
     };
   };
 
-  programs.neovim = {
-    enable = false;
-    extraPython3Packages = (ps: with ps; [ python-language-server isort mypy black ]);
-
-    plugins = with pkgs.vimPlugins; [
-      # General
-      delimitMate
-      fzf-vim
-      vim-surround
-      vim-rooter
-      vim-tmux-navigator
-      nerdtree
-      nerdcommenter
-      supertab
-      vim-airline
-
-      vim-obsession
-
-      vim-fugitive
-      vim-gitgutter
-
-      wmgraphviz-vim
-
-      # Language
-      vim-markdown
-      vim-nix
-      vim-terraform
-      vim-yaml
-      deoplete-nvim
-      neco-syntax
-      ale
-      LanguageClient-neovim
-
-      neosnippet-vim
-      neosnippet-snippets
-
-      # Python
-      semshi
-      deoplete-jedi
-
-      # Haskell
-      ghcid
-
-      # Rust
-      #deoplete-rust
-
-      #Theme
-      gruvbox
-
-      vim-lilypond
-      vim-rdf
-      vim-prolog
-      iron-nvim
-    ];
-    extraConfig = builtins.readFile (./extraconfig.vim);
-  };
 
   programs.starship = {
     enable = true;
