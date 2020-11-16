@@ -24,8 +24,8 @@ myDesktop xmproc = desktopConfig
       -- Key remapping
       , modMask  = myModMask
 
-      , manageHook = manageDocks <+> manageHook defaultConfig
-      , layoutHook = smartBorders . avoidStruts $ layoutHook defaultConfig
+      , manageHook = manageDocks <+> manageHook def
+      , layoutHook = smartBorders . avoidStruts $ layoutHook def
       , logHook = dynamicLogWithPP xmobarPP
                   { ppOutput = hPutStrLn xmproc
                   , ppTitle = xmobarColor "green" "" . shorten 50
@@ -42,34 +42,34 @@ myKeys =
   -- Volume
   -- Mute volume.
   , ((0, xF86XK_AudioMute),
-   	 spawn "amixer -q set Master toggle")
+       spawn "amixer -q set Master toggle")
   -- Decrease volume.
   , ((0, xF86XK_AudioLowerVolume),
-   		spawn "amixer -q set Master 5%-")
+       spawn "amixer -q set Master 5%-")
   -- Increase volume.
   , ((0, xF86XK_AudioRaiseVolume),
-   	 spawn "amixer -q set Master 5%+")
+       spawn "amixer -q set Master 5%+")
 
   -- App shortcuts
   , ((myModMask, xK_F1),
-   	spawn "firefox")
+        spawn "firefox")
   , ((myModMask, xK_F2),
-   	spawn "firefox --private-window")
+        spawn "firefox --private-window")
   , ((myModMask, xK_F3),
-   	spawn "pcmanfm")
+        spawn "pcmanfm")
 
   , ((myModMask, xK_F5),
-   	spawn "xrandr --auto")
+        spawn "xrandr --auto")
   , ((myModMask, xK_F6),
-   	spawn "xrandr --auto; xrandr --output eDP-1 --off")
+        spawn "xrandr --auto; xrandr --output eDP-1 --off")
 
   -- Keyboard Layouts
    , ((myModMask, xK_F9),
-   	 spawn "setxkbmap gr")
+        spawn "setxkbmap gr")
  , ((myModMask, xK_F10),
-   	 spawn "setxkbmap il")
+        spawn "setxkbmap il")
   , ((myModMask, xK_F11),
-   	 spawn "setxkbmap ca")
+        spawn "setxkbmap ca")
   , ((myModMask, xK_F12),
-   	 spawn "setxkbmap us")
+        spawn "setxkbmap us")
   ]
