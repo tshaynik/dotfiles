@@ -28,24 +28,28 @@ myFocusColor  = "#8252c9"  -- Border colour of focused windows
 myBorderWidth :: Int
 myBorderWidth = 2
 
-main = do
-    spawn "stalonetray"
-    spawn "volumeicon"
-    spawn "nm-applet"
-    xmproc <- spawnPipe "xmobar ~/.xmobarrc"
-    xmonad $ myDesktop xmproc `additionalKeys` myKeys
+-------------------
 
-myDesktop xmproc = desktopConfig
+myBar = "xmobar"
+
+-- pretty printing of xmobar
+myPP = xmobarPP { ppTitle = xmobarColor myFocusColor ""
+                , ppCurrent = xmobarColor "#429942" "" . wrap "<" ">"
+                }
+
+-- key binding to toggle gap for bar
+toggleStrutsKey XConfig {XMonad.modMask = modMask} = (modMask, xK_b)
+
+------------------
+
+myDesktop = desktopConfig
     { terminal = myTerminal
     -- Key remapping
     , modMask  = myModMask
 
     , manageHook = manageDocks <+> manageHook def
     , layoutHook = smartBorders . avoidStruts $ layoutHook def
-    , logHook = dynamicLogWithPP xmobarPP
-                { ppOutput = hPutStrLn xmproc
-                , ppTitle = xmobarColor "green" "" . shorten 50
-                }
+    , logHook = return ()
     , normalBorderColor = myNormalColor
     , focusedBorderColor = myFocusColor
     , borderWidth = 2
@@ -92,3 +96,8 @@ myKeys =
   , ((myModMask, xK_F12),
         spawn "setxkbmap us")
   ]
+
+main = do
+    spawn "stalonetray"
+    spawn "volumeicon"
+    xmonad =<< statusBar myBar myPP toggleStrutsKey (myDesktop `additionalKeys` myKeys)
