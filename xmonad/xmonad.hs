@@ -1,4 +1,7 @@
 import XMonad
+
+import qualified XMonad.Actions.Search as S
+
 import XMonad.Config.Desktop
 import XMonad.Hooks.DynamicLog
 import XMonad.Hooks.ManageDocks
@@ -7,10 +10,23 @@ import XMonad.Layout.Fullscreen
 import XMonad.Util.Run(spawnPipe)
 import XMonad.Util.EZConfig(additionalKeys)
 import Graphics.X11.ExtraTypes.XF86
-import System.IO
+import System.IO (hPutStrLn)
 
 -- Use "Windows" key
+myModMask :: KeyMask
 myModMask = mod4Mask
+
+myTerminal :: String
+myTerminal = "kitty"
+
+myNormalColor :: String
+myNormalColor = "#282c34" -- Border colour for normal windows
+
+myFocusColor :: String
+myFocusColor  = "#8252c9"  -- Border colour of focused windows
+
+myBorderWidth :: Int
+myBorderWidth = 2
 
 main = do
     spawn "stalonetray"
@@ -20,17 +36,20 @@ main = do
     xmonad $ myDesktop xmproc `additionalKeys` myKeys
 
 myDesktop xmproc = desktopConfig
-      { terminal = "kitty"
-      -- Key remapping
-      , modMask  = myModMask
+    { terminal = myTerminal
+    -- Key remapping
+    , modMask  = myModMask
 
-      , manageHook = manageDocks <+> manageHook def
-      , layoutHook = smartBorders . avoidStruts $ layoutHook def
-      , logHook = dynamicLogWithPP xmobarPP
-                  { ppOutput = hPutStrLn xmproc
-                  , ppTitle = xmobarColor "green" "" . shorten 50
-                  }
-      }
+    , manageHook = manageDocks <+> manageHook def
+    , layoutHook = smartBorders . avoidStruts $ layoutHook def
+    , logHook = dynamicLogWithPP xmobarPP
+                { ppOutput = hPutStrLn xmproc
+                , ppTitle = xmobarColor "green" "" . shorten 50
+                }
+    , normalBorderColor = myNormalColor
+    , focusedBorderColor = myFocusColor
+    , borderWidth = 2
+    }
 
 myKeys =
   [ ((0, xK_Print),
