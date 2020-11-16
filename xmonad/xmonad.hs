@@ -13,8 +13,12 @@ import XMonad.Layout.NoBorders
 import XMonad.Layout.Fullscreen
 
 import qualified XMonad.Prompt as P
+
+import qualified XMonad.StackSet as W
+
 import XMonad.Util.EZConfig(additionalKeys)
 import XMonad.Util.SpawnOnce
+import qualified XMonad.Util.NamedScratchpad as NS
 
 import qualified DBus as D
 import qualified DBus.Client as DC
@@ -103,9 +107,19 @@ myDesktop = desktopConfig
     }
 
 myStartupHook = do
-  spawnOnce "polybar laptop"
-  spawnOnce "polybar desktop"
-  spawnOnce "volumeicon"
+  spawn "polybar laptop"
+  spawn "polybar desktop"
+
+myScratchPads = [ NS.NS "terminal" (myTerminal <> " --title scratchpad") (title =? "scratchpad") manageTerm
+                , NS.NS "htop" (myTerminal <> " htop") (title =? "htop") manageTerm
+                ]
+  where
+    manageTerm = NS.customFloating $ W.RationalRect l t w h
+      where
+              h = 0.9
+              w = 0.9
+              t = 0.95 - h
+              l = 0.95 - w
 
 myKeys =
   [ ((0, xK_Print),
@@ -155,6 +169,10 @@ myKeys =
   -- search
   , ((myModMask, xK_s), SM.submap $ searchMap $ S.promptSearch dtXPConfig')
   , ((myModMask .|. shiftMask, xK_s), SM.submap $ searchMap $ S.selectSearch)
+
+  -- scratchpads
+  , ((myModMask .|. controlMask, xK_Return), NS.namedScratchpadAction myScratchPads "terminal")
+  , ((myModMask .|. controlMask .|. shiftMask, xK_h), NS.namedScratchpadAction myScratchPads "htop")
   ]
 
 dtXPConfig :: P.XPConfig
