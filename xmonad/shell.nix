@@ -6,6 +6,7 @@ let
       p.xmonad-contrib
       p.xmonad-extras
       p.haskell-language-server
+      p.dbus
     ]);
 in
 

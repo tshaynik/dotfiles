@@ -4,13 +4,22 @@ import qualified XMonad.Actions.Search as S
 import qualified XMonad.Actions.Submap as SM
 
 import XMonad.Config.Desktop
+
 import XMonad.Hooks.DynamicLog
+import XMonad.Hooks.EwmhDesktops
 import XMonad.Hooks.ManageDocks
+
 import XMonad.Layout.NoBorders
 import XMonad.Layout.Fullscreen
+
 import qualified XMonad.Prompt as P
 import XMonad.Util.EZConfig(additionalKeys)
+import XMonad.Util.SpawnOnce
 
+import qualified DBus as D
+import qualified DBus.Client as DC
+
+import qualified Codec.Binary.UTF8.String as UTF8
 import qualified Data.Map as M
 import Graphics.X11.ExtraTypes.XF86
 import System.IO (hPutStrLn)
@@ -21,7 +30,6 @@ myModMask = mod4Mask
 
 myFont :: String
 myFont = "xft:Fira Code:bold:size=9:antialias=true:hinting=true"
-
 
 myTerminal :: String
 myTerminal = "kitty"
@@ -35,19 +43,51 @@ myFocusColor  = "#8252c9"  -- Border colour of focused windows
 myBorderWidth :: Int
 myBorderWidth = 2
 
--------------------
+-- Colours
+fg        = "#ebdbb2"
+bg        = "#282828"
+gray      = "#a89984"
+bg1       = "#3c3836"
+bg2       = "#505050"
+bg3       = "#665c54"
+bg4       = "#7c6f64"
 
-myBar = "xmobar"
+green     = "#b8bb26"
+darkgreen = "#98971a"
+red       = "#fb4934"
+darkred   = "#cc241d"
+yellow    = "#fabd2f"
+blue      = "#83a598"
+purple    = "#d3869b"
+aqua      = "#8ec07c"
+white     = "#eeeeee"
 
--- pretty printing of xmobar
-myPP = xmobarPP { ppTitle = xmobarColor myFocusColor ""
-                , ppCurrent = xmobarColor "#429942" "" . wrap "<" ">"
+pur2      = "#5b51c9"
+blue2     = "#2266d0"
+
+myLogHook :: DC.Client -> PP
+myLogHook dbus = def
+        { ppOutput = dbusOutput dbus
+        , ppCurrent = wrap ("%{F" ++ blue2 ++ "} ") " %{F-}"
+        , ppVisible = wrap ("%{F" ++ blue ++ "} ") " %{F-}"
+        , ppUrgent = wrap ("%{F" ++ red ++ "} ") " %{F-}"
+        , ppHidden = wrap " " " "
+        , ppWsSep = ""
+        , ppSep = " | "
+        --, ppTitle = myAddSpaces 25
+        }
+    where
+        -- Emit a DBus signal on log updates
+        dbusOutput :: DC.Client -> String -> IO ()
+        dbusOutput dbus str = do
+            let signal = (D.signal objectPath interfaceName memberName) {
+                    D.signalBody = [D.toVariant $ UTF8.decodeString str]
                 }
+            DC.emit dbus signal
 
--- key binding to toggle gap for bar
-toggleStrutsKey XConfig {XMonad.modMask = modMask} = (modMask, xK_b)
-
-------------------
+        objectPath = D.objectPath_ "/org/xmonad/Log"
+        interfaceName = D.interfaceName_ "org.xmonad.Log"
+        memberName = D.memberName_ "Update"
 
 myDesktop = desktopConfig
     { terminal = myTerminal
@@ -56,11 +96,16 @@ myDesktop = desktopConfig
 
     , manageHook = manageDocks <+> manageHook def
     , layoutHook = smartBorders . avoidStruts $ layoutHook def
-    , logHook = return ()
     , normalBorderColor = myNormalColor
     , focusedBorderColor = myFocusColor
     , borderWidth = 2
+    , startupHook = myStartupHook
     }
+
+myStartupHook = do
+  spawnOnce "polybar laptop"
+  spawnOnce "polybar desktop"
+  spawnOnce "volumeicon"
 
 myKeys =
   [ ((0, xK_Print),
@@ -102,6 +147,10 @@ myKeys =
         spawn "setxkbmap ca")
   , ((myModMask, xK_F12),
         spawn "setxkbmap us")
+
+  -- Layouts
+  , ((myModMask, xK_b),
+        sendMessage ToggleStruts)
 
   -- search
   , ((myModMask, xK_s), SM.submap $ searchMap $ S.promptSearch dtXPConfig')
@@ -153,6 +202,9 @@ searchMap method = M.fromList $
         ]
 
 main = do
-    spawn "stalonetray"
-    spawn "volumeicon"
-    xmonad =<< statusBar myBar myPP toggleStrutsKey (myDesktop `additionalKeys` myKeys)
+    dbus <- DC.connectSession
+    DC.requestName dbus (D.busName_ "org.xmonad.Log") [DC.nameAllowReplacement, DC.nameReplaceExisting, DC.nameDoNotQueue]
+
+    xmonad
+      $ ewmh
+      $ myDesktop {logHook = dynamicLogWithPP (myLogHook dbus)} `additionalKeys` myKeys
