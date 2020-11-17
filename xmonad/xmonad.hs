@@ -215,6 +215,7 @@ searchMap method = M.fromList $
         , ((0, xK_g), method S.google)
         , ((0, xK_n), method $ S.searchEngine "nixos packages" "https://search.nixos.org/packages?query=")
         , ((0, xK_p), method $ S.searchEngine "nixos options" "https://search.nixos.org/options?query=")
+        , ((0, xK_s), method $ S.searchEngine "spotify" "https://open.spotify.com/search/")
         , ((0, xK_y), method S.youtube)
         , ((0, xK_w), method S.wikipedia)
         ]
