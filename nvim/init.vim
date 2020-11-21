@@ -18,11 +18,11 @@ Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'christoomey/vim-tmux-navigator'
 
 " Language
-"Plug 'dense-analysis/ale'
+Plug 'dense-analysis/ale'
 
 " Completion
 Plug 'ervandew/supertab'
-"Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'Shougo/neco-syntax'
 Plug 'Shougo/neosnippet.vim'
 Plug 'Shougo/neosnippet-snippets'
@@ -48,9 +48,6 @@ Plug 'hkupty/iron.nvim', {'commit': '16c52eaf18f2b4ffd986d5a4b36fcab47a4a9f90'}
 " Language Specific Plugins   "
 """""""""""""""""""""""""""""""
 "
-" Coc
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
-
 
 " Golang
 Plug 'fatih/vim-go'
@@ -109,10 +106,6 @@ set showmatch               " Show matching brackets.
 filetype plugin indent on
 set mouse=a
 
-" recommended for CoC
-set updatetime=300
-set shortmess+=c
-
 " `let`tings
 let NERDTreeShowHidden=1
 
@@ -121,23 +114,24 @@ let NERDTreeShowHidden=1
 set rtp+=~/.fzf/
 
 
-" ale (language server protocol)
-"let g:ale_fix_on_save = 1
-"let g:ale_linters = {
-"\ 'rust': ['rls']
-"\}
+"ale (language server protocol)
+let g:ale_fix_on_save = 1
+let g:ale_linters = {
+\ 'rust': ['analyzer']
+\}
 
-"let g:ale_fixers = {
-"\   '*': ['remove_trailing_lines', 'trim_whitespace'],
-"\   'python': ['black', 'isort'],
-"\   'nix': ['nixpkgs-fmt'],
-"\   'rust': ['rustfmt'],
-"\}
+let g:ale_fixers = {
+\   '*': ['remove_trailing_lines', 'trim_whitespace'],
+\   'python': ['black', 'isort'],
+\   'nix': ['nixpkgs-fmt'],
+\   'rust': ['rustfmt'],
+\}
 
-nnoremap <Leader>ld :call CocAction('jumpDefinition')<CR>
-nnoremap <Leader>ls :call CocAction('jumpDefinition', 'drop')<CR>
-nnoremap <Leader>lh :call CocAction('doHover')<CR>
-nnoremap <Leader>lr :call CocAction('rename')<CR>
+nnoremap <Leader>ag :ALEGoToDefinition<CR>
+nnoremap <Leader>at :ALEGoToTypeDefinition<CR>
+nnoremap <Leader>ad :ALEDetail<CR>
+nnoremap <Leader>ah :ALEHover<CR>
+nnoremap <Leader>ar :ALERename<CR>
 
 "nnoremap <Leader>ro :IronRepl<CR><Esc>:IronFocus<CR>
 "nnoremap <Leader>rh :IronReplHere<CR>
