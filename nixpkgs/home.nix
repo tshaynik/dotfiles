@@ -15,12 +15,18 @@
           jedi
           mypy
           black
+          pylint
           ipython
           jupyterlab
         ]
       )
     )
   ];
+
+  programs.direnv = {
+    enable = true;
+    enableNixDirenvIntegration = true;
+  };
 
   programs.home-manager = {
     enable = true;
