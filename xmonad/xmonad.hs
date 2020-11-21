@@ -33,7 +33,7 @@ myModMask :: KeyMask
 myModMask = mod4Mask
 
 myFont :: String
-myFont = "xft:Fira Code:bold:size=9:antialias=true:hinting=true"
+myFont = "xft:FiraCode:bold:size=12:antialias=true:hinting=true"
 
 myTerminal :: String
 myTerminal = "kitty"
@@ -107,8 +107,7 @@ myDesktop = desktopConfig
     }
 
 myStartupHook = do
-  spawn "polybar laptop"
-  spawn "polybar desktop"
+  spawn "$HOME/.config/polybar/launch.sh"
 
 myScratchPads = [ NS.NS "terminal" (myTerminal <> " --title scratchpad") (title =? "scratchpad") manageTerm
                 , NS.NS "htop" (myTerminal <> " htop") (title =? "htop") manageTerm
@@ -211,6 +210,7 @@ dtXPConfig' = dtXPConfig
 
 searchMap method = M.fromList $
         [ ((0, xK_a), method $ S.searchEngine "archwiki" "https://wiki.archlinux.org/index.php?search=")
+        , ((0, xK_c), method $ S.searchEngine "crates.io" "https://crates.io/search?q=")
         , ((0, xK_d), method S.duckduckgo)
         , ((0, xK_g), method S.google)
         , ((0, xK_n), method $ S.searchEngine "nixos packages" "https://search.nixos.org/packages?query=")
