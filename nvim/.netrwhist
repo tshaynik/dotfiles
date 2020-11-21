@@ -1,0 +1,5 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhistcnt =3
+let g:netrw_dirhist_3='/home/mandolin/Documents/Programming/paypal-transactions/src'
+let g:netrw_dirhist_2='/home/mandolin/TshaynikNC/clarinet-tsimbl-duo/gigs/2019-10-26_Mile_End_Guitar_Coop'
+let g:netrw_dirhist_1='/home/mandolin/Documents/Programming/Learning/rust-wasm/wasm-game-of-life'
