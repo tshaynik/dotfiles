@@ -89,6 +89,7 @@ Plug 'ledger/vim-ledger'
 " Other
 Plug 'vim-pandoc/vim-pandoc'
 Plug 'stephpy/vim-yaml'
+Plug 'cespare/vim-toml'
 Plug 'tpope/vim-markdown'
 
 call plug#end()
@@ -109,7 +110,7 @@ set mouse=a
 " `let`tings
 let NERDTreeShowHidden=1
 
-"let g:deoplete#enable_at_startup = 1
+let g:deoplete#enable_at_startup = 1
 
 set rtp+=~/.fzf/
 
