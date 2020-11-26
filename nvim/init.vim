@@ -87,10 +87,11 @@ Plug 'hashivim/vim-terraform'
 Plug 'ledger/vim-ledger'
 
 " Other
-Plug 'vim-pandoc/vim-pandoc'
+"Plug 'vim-pandoc/vim-pandoc'
 Plug 'stephpy/vim-yaml'
 Plug 'cespare/vim-toml'
 Plug 'tpope/vim-markdown'
+Plug 'reedes/vim-pencil'
 
 call plug#end()
 
@@ -186,11 +187,15 @@ let g:NERDDefaultAlign = 'left'
 let g:terraform_fmt_on_save=1
 
 " Markdown
+let g:pencil#autoformat = 1 " Autoformat in hard mode, but default to use soft mode
+
 augroup filetype_markdown
 autocmd!
-autocmd FileType markdown setl ts=4 sw=4 sts=4 expandtab
-autocmd FileType markdown nnoremap <buffer> <Leader>b :w<CR>:!pandoc % -o %:r.pdf --pdf-engine=xelatex --variable mainfont="DejaVu Serif" --variable monofont="Fira Code" --variable mathfont="Fira Code"<CR>
+  autocmd FileType markdown setl ts=4 sw=4 sts=4 expandtab
+  autocmd FileType markdown nnoremap <buffer> <Leader>b :w<CR>:!pandoc % -o %:r.pdf --pdf-engine=xelatex --variable mainfont="DejaVu Serif" --variable monofont="Fira Code" --variable mathfont="Fira Code"<CR>
+  autocmd FileType markdown call pencil#init({'wrap': 'soft'})
 augroup end
+
 
 augroup filetype_haskell
 autocmd!
