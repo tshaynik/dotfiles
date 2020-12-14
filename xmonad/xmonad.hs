@@ -150,6 +150,8 @@ myKeys =
         spawn "xrandr --auto")
   , ((myModMask, xK_F6),
         spawn "xrandr --auto; xrandr --output eDP-1 --off")
+  , ((myModMask, xK_z),
+        spawn "EDITOR=nvim kitty neuron -d ~/zettelkasten new -e")
 
   -- Keyboard Layouts
   , ((myModMask, xK_F9),
