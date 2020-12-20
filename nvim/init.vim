@@ -92,6 +92,7 @@ Plug 'stephpy/vim-yaml'
 Plug 'cespare/vim-toml'
 Plug 'tpope/vim-markdown'
 Plug 'reedes/vim-pencil'
+Plug 'fiatjaf/neuron.vim'
 
 call plug#end()
 
