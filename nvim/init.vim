@@ -145,16 +145,16 @@ nnoremap <Leader>ad :ALEDetail<CR>
 nnoremap <Leader>ah :ALEHover<CR>
 nnoremap <Leader>ar :ALERename<CR>
 
-"nnoremap <Leader>ro :IronRepl<CR><Esc>:IronFocus<CR>
-"nnoremap <Leader>rh :IronReplHere<CR>
-"nnoremap <Leader>rf :IronFocus<CR>
-"nmap <Leader>rs <Plug>(iron-send-motion)
-"nmap <Leader>rl <Plug>(iron-send-line)
-"vmap <Leader>rs <Plug>(iron-visual-motion)
-"nmap <Leader>rr <Plug>(iron-repeat-cmd)
-"nmap <Leader>rc <Plug>(iron-clear)
-"nmap <Leader>ri <Plug>(iron-interrupt)
-"nmap <Leader>r<CR> <Plug>(iron-cr)
+nnoremap <Leader>ro :IronRepl<CR><Esc>:IronFocus<CR>
+nnoremap <Leader>rh :IronReplHere<CR>
+nnoremap <Leader>rf :IronFocus<CR>
+nmap <Leader>rs <Plug>(iron-send-motion)
+nmap <Leader>rl <Plug>(iron-send-line)
+vmap <Leader>rs <Plug>(iron-visual-motion)
+nmap <Leader>rr <Plug>(iron-repeat-cmd)
+nmap <Leader>rc <Plug>(iron-clear)
+nmap <Leader>ri <Plug>(iron-interrupt)
+nmap <Leader>r<CR> <Plug>(iron-cr)
 
 " fzf
 nnoremap <Leader>ff :Files<CR>
@@ -173,9 +173,6 @@ xmap <C-k>     <Plug>(neosnippet_expand_target)
 " SuperTab like snippets behavior.
 " Note: It must be "imap" and "smap".  It uses <Plug> mappings.
 "imap <expr><TAB>
-" \ pumvisible() ? "\<C-n>" :
-" \ neosnippet#expandable_or_jumpable() ?
-" \    "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
 smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
 \ "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
 
@@ -184,11 +181,7 @@ smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
 "  set conceallevel=2 concealcursor=niv
 "endif
 
-" Enable snipMate compatibility feature.
-"let g:neosnippet#enable_snipmate_compatibility = 1
-
 " Tell Neosnippet about the other snippets
-"let g:neosnippet#snippets_directory='~/Documents/OpenSource/vim-snippets/snippets'
 let g:neosnippet#snippets_directory='~/Documents/OpenSource/neosnippet-snippets/neosnippets'
 
 let g:NERDDefaultAlign = 'left'
