@@ -3,6 +3,7 @@ call plug#begin('~/.vim/plugged')
 
 " Core editing
 Plug 'tpope/vim-surround'
+Plug 'tpope/vim-repeat'
 Plug 'Raimondi/delimitMate'
 
 " Files
@@ -78,6 +79,9 @@ Plug 'gisraptor/vim-lilypond-integrator'
 " SQL
 Plug 'vim-scripts/dbext.vim'
 
+" Front-end web
+Plug 'AndrewRadev/tagalong.vim'
+
 """"""""""""""""""""""""""""""""
 " Tool Specific Plugins        "
 """"""""""""""""""""""""""""""""
@@ -93,6 +97,7 @@ Plug 'cespare/vim-toml'
 Plug 'tpope/vim-markdown'
 Plug 'reedes/vim-pencil'
 Plug 'fiatjaf/neuron.vim'
+Plug 'rrethy/vim-hexokinase', { 'do': 'make hexokinase' }
 
 call plug#end()
 
@@ -108,6 +113,7 @@ set autoread
 set showmatch               " Show matching brackets.
 filetype plugin indent on
 set mouse=a
+set termguicolors
 
 " `let`tings
 let NERDTreeShowHidden=1
@@ -128,6 +134,9 @@ let g:ale_fixers = {
 \   'python': ['black', 'isort'],
 \   'nix': ['nixpkgs-fmt'],
 \   'rust': ['rustfmt'],
+\   'html': ['prettier'],
+\   'css': ['prettier'],
+\   'js': ['prettier'],
 \}
 
 nnoremap <Leader>ag :ALEGoToDefinition<CR>
@@ -197,6 +206,10 @@ autocmd!
   autocmd FileType markdown call pencil#init({'wrap': 'soft'})
 augroup end
 
+augroup filetype_web
+autocmd!
+autocmd FileType html set tabstop=2 shiftwidth=2 expandtab
+augroup end
 
 augroup filetype_haskell
 autocmd!
