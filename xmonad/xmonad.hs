@@ -159,7 +159,7 @@ myKeys =
   , ((myModMask, xK_F9),
         spawn "setxkbmap gr")
   , ((myModMask, xK_F10),
-        spawn "setxkbmap il")
+        spawn "setxkbmap il -variant 'phonetic'")
   , ((myModMask, xK_F11),
         spawn "setxkbmap ca")
   , ((myModMask, xK_F12),

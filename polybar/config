@@ -1,5 +1,3 @@
-
-
 [colors]
 background = #d0303030
 background-transparent = #00303030
@@ -88,7 +86,7 @@ monitor = ${env:MONITOR:eDP-1}
 
 modules-left = xmonad
 modules-center = alsa
-modules-right = redshift battery date powermenu
+modules-right = battery alsa cpu memory date powermenu
 
 [module/xmonad]
 type = custom/script

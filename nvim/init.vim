@@ -79,6 +79,9 @@ Plug 'gisraptor/vim-lilypond-integrator'
 " SQL
 Plug 'vim-scripts/dbext.vim'
 
+" neo4j
+Plug 'neo4j-contrib/cypher-vim-syntax'
+
 " Front-end web
 Plug 'AndrewRadev/tagalong.vim'
 
@@ -195,7 +198,7 @@ let g:pencil#autoformat = 1 " Autoformat in hard mode, but default to use soft m
 augroup filetype_markdown
 autocmd!
   autocmd FileType markdown setl ts=4 sw=4 sts=4 expandtab
-  autocmd FileType markdown nnoremap <buffer> <Leader>b :w<CR>:!pandoc % -o %:r.pdf --pdf-engine=xelatex --variable mainfont="DejaVu Serif" --variable monofont="Fira Code" --variable mathfont="Fira Code"<CR>
+  autocmd FileType markdown nnoremap <buffer> <Leader>b :w<CR>:!pandoc % -o %:r.pdf --pdf-engine=xelatex --variable mainfont="FreeSerif" --variable monofont="Fira Code" --variable mathfont="Fira Code"<CR>
   autocmd FileType markdown call pencil#init({'wrap': 'soft'})
 augroup end
 
@@ -287,8 +290,10 @@ inoremap <C-l> gt
 
 " Use system clipboard
 vnoremap <leader>y "+y
+vnoremap <C-c> "+y
 vnoremap <leader>p "+p
 nnoremap <leader>y "+y
+nnoremap <C-c> "+y
 nnoremap <leader>p "+p
 
 " Git bindings
