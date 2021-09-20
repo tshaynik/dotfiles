@@ -43,9 +43,6 @@ Plug 'vim-airline/vim-airline'
 " Linting
 Plug 'neomake/neomake'
 
-" Repl
-Plug 'hkupty/iron.nvim'
-
 """""""""""""""""""""""""""""""
 " Language Specific Plugins   "
 """""""""""""""""""""""""""""""
@@ -314,7 +311,3 @@ au! BufNewFile,BufRead *.n3  set filetype=n3
 au! BufNewFile,BufRead *.jsonld  set filetype=jsonld
 
 "colorscheme gruvbox
-
-" for iron.nvim
-
-luafile $HOME/.config/nvim/plugins.lua

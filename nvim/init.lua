@@ -18,9 +18,13 @@ require "paq" {
     {"lervag/vimtex", opt=true};      -- Use braces when passing options
 
     "editorconfig/editorconfig-vim";
+
+    -- repl
+    "hkupty/iron.nvim";
 }
 
 -- Modules
 require("completion")
 require("lsp")
 require("options")
+require("repl")
