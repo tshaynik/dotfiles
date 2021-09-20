@@ -19,11 +19,11 @@ Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'christoomey/vim-tmux-navigator'
 
 " Language
-Plug 'dense-analysis/ale'
+"Plug 'dense-analysis/ale'
 
 " Completion
 Plug 'ervandew/supertab'
-Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+"Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'Shougo/neco-syntax'
 Plug 'Shougo/neosnippet.vim'
 Plug 'Shougo/neosnippet-snippets'
@@ -34,7 +34,8 @@ Plug 'airblade/vim-gitgutter'
 
 " Theme
 Plug 'morhetz/gruvbox'
-
+Plug 'glepnir/zephyr-nvim'
+Plug 'nvim-treesitter/nvim-treesitter'
 
 " Appearance
 Plug 'vim-airline/vim-airline'
@@ -43,7 +44,7 @@ Plug 'vim-airline/vim-airline'
 Plug 'neomake/neomake'
 
 " Repl
-Plug 'hkupty/iron.nvim', {'commit': '16c52eaf18f2b4ffd986d5a4b36fcab47a4a9f90'}
+Plug 'hkupty/iron.nvim'
 
 """""""""""""""""""""""""""""""
 " Language Specific Plugins   "
@@ -121,26 +122,26 @@ set termguicolors
 " `let`tings
 let NERDTreeShowHidden=1
 
-let g:deoplete#enable_at_startup = 1
+"let g:deoplete#enable_at_startup = 1
 
 set rtp+=~/.fzf/
 
 
 "ale (language server protocol)
-let g:ale_fix_on_save = 1
-let g:ale_linters = {
-\ 'rust': ['analyzer']
-\}
+"let g:ale_fix_on_save = 1
+"let g:ale_linters = {
+"\ 'rust': ['analyzer']
+"\}
 
-let g:ale_fixers = {
-\   '*': ['remove_trailing_lines', 'trim_whitespace'],
-\   'python': ['black', 'isort'],
-\   'nix': ['nixpkgs-fmt'],
-\   'rust': ['rustfmt'],
-\   'html': ['prettier'],
-\   'css': ['prettier'],
-\   'js': ['prettier'],
-\}
+"let g:ale_fixers = {
+"\   '*': ['remove_trailing_lines', 'trim_whitespace'],
+"\   'python': ['black', 'isort'],
+"\   'nix': ['nixpkgs-fmt'],
+"\   'rust': ['rustfmt'],
+"\   'html': ['prettier'],
+"\   'css': ['prettier'],
+"\   'js': ['prettier'],
+"\}
 
 nnoremap <Leader>ag :ALEGoToDefinition<CR>
 nnoremap <Leader>at :ALEGoToTypeDefinition<CR>
@@ -312,7 +313,7 @@ au! BufNewFile,BufRead *.trig  set filetype=trig
 au! BufNewFile,BufRead *.n3  set filetype=n3
 au! BufNewFile,BufRead *.jsonld  set filetype=jsonld
 
-colorscheme gruvbox
+"colorscheme gruvbox
 
 " for iron.nvim
 
