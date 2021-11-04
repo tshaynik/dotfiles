@@ -6,8 +6,11 @@ require("zephyr") --colorscheme
 require "paq" {
     "savq/paq-nvim";                  -- Let Paq manage itself
 
+    'nvim-treesitter/nvim-treesitter';
+
     "neovim/nvim-lspconfig";          -- LSP configurations
-    "hrsh7th/nvim-compe";             -- completion
+    "hrsh7th/nvim-cmp";             -- completion
+    "hrsh7th/cmp-nvim-lsp";
     "simrat39/rust-tools.nvim";
 
     -- Optional dependencies for rust-tools
