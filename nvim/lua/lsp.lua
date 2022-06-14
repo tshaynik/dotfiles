@@ -34,6 +34,9 @@ require'lspconfig'.sumneko_lua.setup {
 -- Nix
 require'lspconfig'.rnix.setup{}
 
+-- Haskell
+require'lspconfig'.hls.setup{}
+
 -- Rust
 local rust_opts = {
     tools = { -- rust-tools options
