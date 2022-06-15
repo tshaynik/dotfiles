@@ -1,33 +1,16 @@
-vim.cmd('source ~/.config/nvim/old_config.vim')
-
-require("zephyr") --colorscheme
-
--- Packages
-require "paq" {
-    "savq/paq-nvim";                  -- Let Paq manage itself
-
-    'nvim-treesitter/nvim-treesitter';
-
-    "neovim/nvim-lspconfig";          -- LSP configurations
-    "hrsh7th/nvim-cmp";             -- completion
-    "hrsh7th/cmp-nvim-lsp";
-    "simrat39/rust-tools.nvim";
-
-    -- Optional dependencies for rust-tools
-    "nvim-lua/popup.nvim";
-    "nvim-lua/plenary.nvim";
-    "nvim-telescope/telescope.nvim";
-
-    {"lervag/vimtex", opt=true};      -- Use braces when passing options
-
-    "editorconfig/editorconfig-vim";
-
-    -- repl
-    "hkupty/iron.nvim";
-}
+vim.g.mapleader = " "
+vim.g.localleader = "\\"
 
 -- Modules
+vim.cmd('source ~/.config/nvim/vim/mappings.vim')
+vim.cmd('source ~/.config/nvim/old_config.vim')
+require("plugins")
 require("completion")
 require("lsp")
+require("treesitter")
 require("options")
 require("repl")
+
+vim.cmd("colorscheme zephyr")
+
+require('rust-tools').setup({})

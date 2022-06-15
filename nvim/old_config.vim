@@ -1,127 +1,127 @@
 " https://github.com/junegunn/vim-plug
-call plug#begin('~/.vim/plugged')
+"call plug#begin('~/.vim/plugged')
 
-" Core editing
-Plug 'tpope/vim-surround'
-Plug 'tpope/vim-repeat'
-Plug 'Raimondi/delimitMate'
+"" Core editing
+"Plug 'tpope/vim-surround'
+"Plug 'tpope/vim-repeat'
+"Plug 'Raimondi/delimitMate'
 
-" Files
-Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-Plug 'junegunn/fzf.vim'
-Plug 'airblade/vim-rooter'
-Plug 'kien/ctrlp.vim'
-"
-" File Navigation
-Plug 'scrooloose/nerdcommenter'
-Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
-Plug 'Xuyuanp/nerdtree-git-plugin'
-Plug 'christoomey/vim-tmux-navigator'
+"" Files
+"Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+"Plug 'junegunn/fzf.vim'
+"Plug 'airblade/vim-rooter'
+"Plug 'kien/ctrlp.vim'
+""
+"" File Navigation
+"Plug 'scrooloose/nerdcommenter'
+"Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
+"Plug 'Xuyuanp/nerdtree-git-plugin'
+"Plug 'christoomey/vim-tmux-navigator'
 
-" Language
-"Plug 'dense-analysis/ale'
+"" Language
+""Plug 'dense-analysis/ale'
 
-" Completion
-Plug 'ervandew/supertab'
-"Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-Plug 'Shougo/neco-syntax'
-Plug 'Shougo/neosnippet.vim'
-Plug 'Shougo/neosnippet-snippets'
+"" Completion
+"Plug 'ervandew/supertab'
+""Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+"Plug 'Shougo/neco-syntax'
+"Plug 'Shougo/neosnippet.vim'
+"Plug 'Shougo/neosnippet-snippets'
 
-" Git
-Plug 'tpope/vim-fugitive'
-Plug 'airblade/vim-gitgutter'
+"" Git
+"Plug 'tpope/vim-fugitive'
+"Plug 'airblade/vim-gitgutter'
 
-" Theme
-Plug 'morhetz/gruvbox'
-Plug 'glepnir/zephyr-nvim'
-Plug 'nvim-treesitter/nvim-treesitter'
+"" Theme
+""Plug 'morhetz/gruvbox'
+""Plug 'glepnir/zephyr-nvim'
+""Plug 'nvim-treesitter/nvim-treesitter'
 
-" Appearance
-Plug 'vim-airline/vim-airline'
+"" Appearance
+"Plug 'vim-airline/vim-airline'
 
-" Linting
-Plug 'neomake/neomake'
-
-"""""""""""""""""""""""""""""""
-" Language Specific Plugins   "
-"""""""""""""""""""""""""""""""
-"
-
-" Golang
-Plug 'fatih/vim-go'
-Plug 'ncm2/ncm2-go'
-Plug 'majutsushi/tagbar'
-
-" Python
-Plug 'numirias/semshi'
-
-" Haskell
-Plug 'neovimhaskell/haskell-vim'
-
-Plug 'tidalcycles/vim-tidal'
-
-" Rust
-Plug 'rust-lang/rust.vim'
-Plug 'timonv/vim-cargo'
-
-" Nix
-Plug 'LnL7/vim-nix'
-
-" Dhall
-Plug 'vmchale/dhall-vim'
-
-" Lilypond
-Plug 'gisraptor/vim-lilypond-integrator'
-
-" SQL
-Plug 'vim-scripts/dbext.vim'
-
-" neo4j
-Plug 'neo4j-contrib/cypher-vim-syntax'
-
-" Front-end web
-Plug 'AndrewRadev/tagalong.vim'
+"" Linting
+"Plug 'neomake/neomake'
 
 """"""""""""""""""""""""""""""""
-" Tool Specific Plugins        "
+"" Language Specific Plugins   "
 """"""""""""""""""""""""""""""""
-" Terraform
-Plug 'hashivim/vim-terraform'
-"hledger
-Plug 'ledger/vim-ledger'
+""
 
-" Other
-"Plug 'vim-pandoc/vim-pandoc'
-Plug 'stephpy/vim-yaml'
-Plug 'cespare/vim-toml'
-Plug 'tpope/vim-markdown'
-Plug 'reedes/vim-pencil'
-Plug 'fiatjaf/neuron.vim'
-Plug 'rrethy/vim-hexokinase', { 'do': 'make hexokinase' }
+"" Golang
+"Plug 'fatih/vim-go'
+"Plug 'ncm2/ncm2-go'
+"Plug 'majutsushi/tagbar'
 
-call plug#end()
+"" Python
+"Plug 'numirias/semshi'
 
-let mapleader=" "
-let maplocalleader = "\\"
+"" Haskell
+"Plug 'neovimhaskell/haskell-vim'
+
+"Plug 'tidalcycles/vim-tidal'
+
+"" Rust
+"Plug 'rust-lang/rust.vim'
+"Plug 'timonv/vim-cargo'
+
+"" Nix
+"Plug 'LnL7/vim-nix'
+
+"" Dhall
+"Plug 'vmchale/dhall-vim'
+
+"" Lilypond
+"Plug 'gisraptor/vim-lilypond-integrator'
+
+"" SQL
+"Plug 'vim-scripts/dbext.vim'
+
+"" neo4j
+"Plug 'neo4j-contrib/cypher-vim-syntax'
+
+"" Front-end web
+"Plug 'AndrewRadev/tagalong.vim'
+
+"""""""""""""""""""""""""""""""""
+"" Tool Specific Plugins        "
+"""""""""""""""""""""""""""""""""
+"" Terraform
+"Plug 'hashivim/vim-terraform'
+""hledger
+"Plug 'ledger/vim-ledger'
+
+"" Other
+""Plug 'vim-pandoc/vim-pandoc'
+"Plug 'stephpy/vim-yaml'
+"Plug 'cespare/vim-toml'
+"Plug 'tpope/vim-markdown'
+"Plug 'reedes/vim-pencil'
+"Plug 'fiatjaf/neuron.vim'
+"Plug 'rrethy/vim-hexokinase', { 'do': 'make hexokinase' }
+
+"call plug#end()
+
+"let mapleader=" "
+"let maplocalleader = "\\"
 
 " `set`tings
-set foldmethod=syntax
-set number                   " add line numbers
-set nocompatible
-set hidden
-set autoread
-set showmatch               " Show matching brackets.
-filetype plugin indent on
-set mouse=a
-set termguicolors
+"set foldmethod=syntax
+"set number                   " add line numbers
+"set nocompatible
+"set hidden
+"set autoread
+"set showmatch               " Show matching brackets.
+"filetype plugin indent on
+"set mouse=a
+"set termguicolors
 
 " `let`tings
-let NERDTreeShowHidden=1
+"let NERDTreeShowHidden=1
 
 "let g:deoplete#enable_at_startup = 1
 
-set rtp+=~/.fzf/
+"set rtp+=~/.fzf/
 
 
 "ale (language server protocol)
@@ -158,24 +158,24 @@ nmap <Leader>ri <Plug>(iron-interrupt)
 nmap <Leader>r<CR> <Plug>(iron-cr)
 
 " fzf
-nnoremap <Leader>ff :Files<CR>
-nnoremap <Leader>fb :Buffers<CR>
-nnoremap <Leader>fr :Rg<CR>
-nnoremap <Leader>fc :Commits<CR>
-nnoremap <Leader>fm :Maps<CR>
-nnoremap <leader>fh :History<CR>
-nmap <leader>/ :Rg<CR>
+"nnoremap <Leader>ff :Files<CR>
+"nnoremap <Leader>fb :Buffers<CR>
+"nnoremap <Leader>fr :Rg<CR>
+"nnoremap <Leader>fc :Commits<CR>
+"nnoremap <Leader>fm :Maps<CR>
+"nnoremap <leader>fh :History<CR>
+"nmap <leader>/ :Rg<CR>
 
 "" Note: It must be "imap" and "smap".  It uses <Plug> mappings.
-imap <C-k>     <Plug>(neosnippet_expand_or_jump)
-smap <C-k>     <Plug>(neosnippet_expand_or_jump)
-xmap <C-k>     <Plug>(neosnippet_expand_target)
+"imap <C-k>     <Plug>(neosnippet_expand_or_jump)
+"smap <C-k>     <Plug>(neosnippet_expand_or_jump)
+"xmap <C-k>     <Plug>(neosnippet_expand_target)
 
 " SuperTab like snippets behavior.
 " Note: It must be "imap" and "smap".  It uses <Plug> mappings.
 "imap <expr><TAB>
-smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
-\ "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
+"smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
+"\ "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
 
 " For conceal markers.
 "if has('conceal')
@@ -183,15 +183,15 @@ smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
 "endif
 
 " Tell Neosnippet about the other snippets
-let g:neosnippet#snippets_directory='~/Documents/OpenSource/neosnippet-snippets/neosnippets'
+"let g:neosnippet#snippets_directory='~/Documents/OpenSource/neosnippet-snippets/neosnippets'
 
-let g:NERDDefaultAlign = 'left'
+"let g:NERDDefaultAlign = 'left'
 
 " Terraform
-let g:terraform_fmt_on_save=1
+"let g:terraform_fmt_on_save=1
 
 " Markdown
-let g:pencil#autoformat = 1 " Autoformat in hard mode, but default to use soft mode
+"let g:pencil#autoformat = 1 " Autoformat in hard mode, but default to use soft mode
 
 augroup filetype_markdown
 autocmd!
@@ -229,7 +229,7 @@ nnoremap <leader>fs :w<CR>
 nnoremap <leader>cd :cd<CR>
 
 "nnoremap <leader>ss :e.<CR>
-nnoremap <Tab> :NERDTreeToggle<CR>
+"nnoremap <Tab> :NERDTreeToggle<CR>
 nnoremap <leader>sS :tabnew.<CR>
 nnoremap <leader>sp :sp.<CR>
 nnoremap <leader>sv :vs.<CR>

@@ -3,6 +3,11 @@ local runtime_path = vim.split(package.path, ';')
 table.insert(runtime_path, "lua/?.lua")
 table.insert(runtime_path, "lua/?/init.lua")
 
+local lsp_flags = {
+  -- This is the default in Nvim 0.7+
+  debounce_text_changes = 150,
+}
+
 require'lspconfig'.sumneko_lua.setup {
   capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities());
   --cmd = {sumneko_binary, "-E", sumneko_root_path .. "/main.lua"};
@@ -30,6 +35,8 @@ require'lspconfig'.sumneko_lua.setup {
     },
   },
 }
+
+require('lspconfig').pyright.setup{}
 
 -- Nix
 require'lspconfig'.rnix.setup{}
