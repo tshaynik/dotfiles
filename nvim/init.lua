@@ -13,4 +13,5 @@ require("repl")
 
 vim.cmd("colorscheme zephyr")
 
+require('telescope').load_extension('projects')
 require('rust-tools').setup({})

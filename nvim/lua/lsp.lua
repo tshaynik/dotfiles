@@ -3,13 +3,10 @@ local runtime_path = vim.split(package.path, ';')
 table.insert(runtime_path, "lua/?.lua")
 table.insert(runtime_path, "lua/?/init.lua")
 
-local lsp_flags = {
-  -- This is the default in Nvim 0.7+
-  debounce_text_changes = 150,
-}
+local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
 
 require'lspconfig'.sumneko_lua.setup {
-  capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities());
+  capabilities = capabilities,
   --cmd = {sumneko_binary, "-E", sumneko_root_path .. "/main.lua"};
   cmd = {'/home/mandolin/.nix-profile/bin/lua-language-server'};
   settings = {
@@ -36,13 +33,19 @@ require'lspconfig'.sumneko_lua.setup {
   },
 }
 
-require('lspconfig').pyright.setup{}
+require('lspconfig').pyright.setup{
+  capabilities = capabilities,
+}
 
 -- Nix
-require'lspconfig'.rnix.setup{}
+require'lspconfig'.rnix.setup{
+  capabilities = capabilities,
+}
 
 -- Haskell
-require'lspconfig'.hls.setup{}
+require'lspconfig'.hls.setup{
+  capabilities = capabilities,
+}
 
 -- Rust
 local rust_opts = {
