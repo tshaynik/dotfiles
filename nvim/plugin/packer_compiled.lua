@@ -84,7 +84,7 @@ _G.packer_plugins = {
     url = "https://github.com/w0rp/ale"
   },
   ["bubbly.nvim"] = {
-    config = { "\27LJ\2\nÙ\2\0\0\2\0\6\0\t6\0\0\0009\0\1\0005\1\3\0=\1\2\0006\0\0\0009\0\1\0005\1\5\0=\1\4\0K\0\1\0\1\v\0\0\tmode\rtruncate\tpath\vbranch\fsignify\rgitsigns\bcoc\fdivisor\rfiletype\rprogress\22bubbly_statusline\1\0\f\nwhite\f#c5cdd9\bred\f#ec7279\rdarkgrey\f#404247\nblack\f#3e4249\14lightgrey\f#57595e\15foreground\f#c5cdd9\tcyan\f#5dbbc1\15background\f#34343c\vpurple\f#d38aea\tblue\f#6cb6eb\vyellow\f#deb974\ngreen\f#a0c980\19bubbly_palette\6g\bvim\0" },
+    config = { "\27LJ\2\nÙ\2\0\0\2\0\6\0\t6\0\0\0009\0\1\0005\1\3\0=\1\2\0006\0\0\0009\0\1\0005\1\5\0=\1\4\0K\0\1\0\1\v\0\0\tmode\rtruncate\tpath\vbranch\fsignify\rgitsigns\bcoc\fdivisor\rfiletype\rprogress\22bubbly_statusline\1\0\f\ngreen\f#a0c980\nwhite\f#c5cdd9\bred\f#ec7279\15background\f#34343c\nblack\f#3e4249\14lightgrey\f#57595e\15foreground\f#c5cdd9\rdarkgrey\f#404247\tcyan\f#5dbbc1\vpurple\f#d38aea\tblue\f#6cb6eb\vyellow\f#deb974\19bubbly_palette\6g\bvim\0" },
     loaded = true,
     path = "/home/mandolin/.local/share/nvim/site/pack/packer/start/bubbly.nvim",
     url = "https://github.com/datwaft/bubbly.nvim"
@@ -128,6 +128,11 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/mandolin/.local/share/nvim/site/pack/packer/start/editorconfig-vim",
     url = "https://github.com/editorconfig/editorconfig-vim"
+  },
+  ["friendly-snippets"] = {
+    loaded = true,
+    path = "/home/mandolin/.local/share/nvim/site/pack/packer/start/friendly-snippets",
+    url = "https://github.com/rafamadriz/friendly-snippets"
   },
   ["gitsigns.nvim"] = {
     config = { "\27LJ\2\n6\0\0\3\0\3\0\0066\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\rgitsigns\frequire\0" },
@@ -181,6 +186,11 @@ _G.packer_plugins = {
     path = "/home/mandolin/.local/share/nvim/site/pack/packer/start/rust-tools.nvim",
     url = "https://github.com/simrat39/rust-tools.nvim"
   },
+  ["tagalong.vim"] = {
+    loaded = true,
+    path = "/home/mandolin/.local/share/nvim/site/pack/packer/start/tagalong.vim",
+    url = "https://github.com/AndrewRadev/tagalong.vim"
+  },
   ["telescope.nvim"] = {
     loaded = true,
     path = "/home/mandolin/.local/share/nvim/site/pack/packer/start/telescope.nvim",
@@ -214,18 +224,18 @@ _G.packer_plugins = {
 }
 
 time([[Defining packer_plugins]], false)
--- Config for: bubbly.nvim
-time([[Config for bubbly.nvim]], true)
-try_loadstring("\27LJ\2\nÙ\2\0\0\2\0\6\0\t6\0\0\0009\0\1\0005\1\3\0=\1\2\0006\0\0\0009\0\1\0005\1\5\0=\1\4\0K\0\1\0\1\v\0\0\tmode\rtruncate\tpath\vbranch\fsignify\rgitsigns\bcoc\fdivisor\rfiletype\rprogress\22bubbly_statusline\1\0\f\nwhite\f#c5cdd9\bred\f#ec7279\rdarkgrey\f#404247\nblack\f#3e4249\14lightgrey\f#57595e\15foreground\f#c5cdd9\tcyan\f#5dbbc1\15background\f#34343c\vpurple\f#d38aea\tblue\f#6cb6eb\vyellow\f#deb974\ngreen\f#a0c980\19bubbly_palette\6g\bvim\0", "config", "bubbly.nvim")
-time([[Config for bubbly.nvim]], false)
--- Config for: project.nvim
-time([[Config for project.nvim]], true)
-try_loadstring("\27LJ\2\n>\0\0\3\0\3\0\a6\0\0\0'\2\1\0B\0\2\0029\0\2\0004\2\0\0B\0\2\1K\0\1\0\nsetup\17project_nvim\frequire\0", "config", "project.nvim")
-time([[Config for project.nvim]], false)
 -- Config for: gitsigns.nvim
 time([[Config for gitsigns.nvim]], true)
 try_loadstring("\27LJ\2\n6\0\0\3\0\3\0\0066\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\rgitsigns\frequire\0", "config", "gitsigns.nvim")
 time([[Config for gitsigns.nvim]], false)
+-- Config for: project.nvim
+time([[Config for project.nvim]], true)
+try_loadstring("\27LJ\2\n>\0\0\3\0\3\0\a6\0\0\0'\2\1\0B\0\2\0029\0\2\0004\2\0\0B\0\2\1K\0\1\0\nsetup\17project_nvim\frequire\0", "config", "project.nvim")
+time([[Config for project.nvim]], false)
+-- Config for: bubbly.nvim
+time([[Config for bubbly.nvim]], true)
+try_loadstring("\27LJ\2\nÙ\2\0\0\2\0\6\0\t6\0\0\0009\0\1\0005\1\3\0=\1\2\0006\0\0\0009\0\1\0005\1\5\0=\1\4\0K\0\1\0\1\v\0\0\tmode\rtruncate\tpath\vbranch\fsignify\rgitsigns\bcoc\fdivisor\rfiletype\rprogress\22bubbly_statusline\1\0\f\ngreen\f#a0c980\nwhite\f#c5cdd9\bred\f#ec7279\15background\f#34343c\nblack\f#3e4249\14lightgrey\f#57595e\15foreground\f#c5cdd9\rdarkgrey\f#404247\tcyan\f#5dbbc1\vpurple\f#d38aea\tblue\f#6cb6eb\vyellow\f#deb974\19bubbly_palette\6g\bvim\0", "config", "bubbly.nvim")
+time([[Config for bubbly.nvim]], false)
 
 -- Command lazy-loads
 time([[Defining lazy-load commands]], true)
@@ -236,17 +246,17 @@ vim.cmd [[augroup packer_load_aucmds]]
 vim.cmd [[au!]]
   -- Filetype lazy-loads
 time([[Defining lazy-load filetype autocommands]], true)
+vim.cmd [[au FileType sh ++once lua require("packer.load")({'ale'}, { ft = "sh" }, _G.packer_plugins)]]
 vim.cmd [[au FileType zsh ++once lua require("packer.load")({'ale'}, { ft = "zsh" }, _G.packer_plugins)]]
 vim.cmd [[au FileType bash ++once lua require("packer.load")({'ale'}, { ft = "bash" }, _G.packer_plugins)]]
 vim.cmd [[au FileType cpp ++once lua require("packer.load")({'ale'}, { ft = "cpp" }, _G.packer_plugins)]]
-vim.cmd [[au FileType sh ++once lua require("packer.load")({'ale'}, { ft = "sh" }, _G.packer_plugins)]]
 vim.cmd [[au FileType c ++once lua require("packer.load")({'ale'}, { ft = "c" }, _G.packer_plugins)]]
-vim.cmd [[au FileType vim ++once lua require("packer.load")({'ale'}, { ft = "vim" }, _G.packer_plugins)]]
-vim.cmd [[au FileType cmake ++once lua require("packer.load")({'ale'}, { ft = "cmake" }, _G.packer_plugins)]]
 vim.cmd [[au FileType html ++once lua require("packer.load")({'ale'}, { ft = "html" }, _G.packer_plugins)]]
 vim.cmd [[au FileType markdown ++once lua require("packer.load")({'ale'}, { ft = "markdown" }, _G.packer_plugins)]]
 vim.cmd [[au FileType racket ++once lua require("packer.load")({'ale'}, { ft = "racket" }, _G.packer_plugins)]]
 vim.cmd [[au FileType tex ++once lua require("packer.load")({'ale'}, { ft = "tex" }, _G.packer_plugins)]]
+vim.cmd [[au FileType vim ++once lua require("packer.load")({'ale'}, { ft = "vim" }, _G.packer_plugins)]]
+vim.cmd [[au FileType cmake ++once lua require("packer.load")({'ale'}, { ft = "cmake" }, _G.packer_plugins)]]
 time([[Defining lazy-load filetype autocommands]], false)
 vim.cmd("augroup END")
 if should_profile then save_profiles() end

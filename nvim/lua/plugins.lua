@@ -16,6 +16,7 @@ return require('packer').startup(function()
   -- snippets
   use 'L3MON4D3/LuaSnip'
   use 'saadparwaiz1/cmp_luasnip'
+  use 'rafamadriz/friendly-snippets'
 
   -- Load on a combination of conditions: specific filetypes or commands
   -- Also run code after load (see the "config" key)
@@ -104,6 +105,7 @@ return require('packer').startup(function()
   use 'tpope/vim-surround'
   use 'tpope/vim-repeat'
   use 'Raimondi/delimitMate'
+  use 'AndrewRadev/tagalong.vim'
 
   --Files
   --use 'airblade/vim-rooter'

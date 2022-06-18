@@ -13,5 +13,6 @@ require("repl")
 
 vim.cmd("colorscheme zephyr")
 
+require("luasnip.loaders.from_vscode").lazy_load()
 require('telescope').load_extension('projects')
 require('rust-tools').setup({})

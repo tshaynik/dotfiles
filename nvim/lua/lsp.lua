@@ -33,6 +33,16 @@ require'lspconfig'.sumneko_lua.setup {
   },
 }
 
+require('lspconfig').html.setup{
+  capabilities = capabilities,
+  --cmd = {'/home/mandolin/.nix-profile/lib/node_modules/vscode-html-languageserver-bin/htmlServerMain.js'};
+}
+
+require('lspconfig').cssls.setup{
+  capabilities = capabilities,
+  --cmd = {'/home/mandolin/.nix-profile/lib/node_modules/lib/node_modules/vscode-css-languageserver-bin/cssServerMain.js'};
+}
+
 require('lspconfig').pyright.setup{
   capabilities = capabilities,
 }

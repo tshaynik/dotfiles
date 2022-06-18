@@ -193,12 +193,12 @@ nmap <Leader>r<CR> <Plug>(iron-cr)
 " Markdown
 "let g:pencil#autoformat = 1 " Autoformat in hard mode, but default to use soft mode
 
-augroup filetype_markdown
-autocmd!
-  autocmd FileType markdown setl ts=4 sw=4 sts=4 expandtab
-  autocmd FileType markdown nnoremap <buffer> <Leader>b :w<CR>:!pandoc % -o %:r.pdf --pdf-engine=xelatex --variable mainfont="FreeSerif" --variable monofont="Fira Code" --variable mathfont="Fira Code"<CR>
-  autocmd FileType markdown call pencil#init({'wrap': 'soft'})
-augroup end
+"augroup filetype_markdown
+"autocmd!
+  "autocmd FileType markdown setl ts=4 sw=4 sts=4 expandtab
+  "autocmd FileType markdown nnoremap <buffer> <Leader>b :w<CR>:!pandoc % -o %:r.pdf --pdf-engine=xelatex --variable mainfont="FreeSerif" --variable monofont="Fira Code" --variable mathfont="Fira Code"<CR>
+  "autocmd FileType markdown call pencil#init({'wrap': 'soft'})
+"augroup end
 
 augroup filetype_web
 autocmd!
