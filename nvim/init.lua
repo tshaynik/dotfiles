@@ -1,0 +1,18 @@
+vim.g.mapleader = " "
+vim.g.localleader = "\\"
+
+-- Modules
+vim.cmd('source ~/.config/nvim/vim/mappings.vim')
+vim.cmd('source ~/.config/nvim/old_config.vim')
+require("plugins")
+require("completion")
+require("lsp")
+require("treesitter")
+require("options")
+require("repl")
+
+vim.cmd("colorscheme zephyr")
+
+require("luasnip.loaders.from_vscode").lazy_load()
+require('telescope').load_extension('projects')
+require('rust-tools').setup({})
