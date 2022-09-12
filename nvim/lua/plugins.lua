@@ -98,6 +98,9 @@ return require('packer').startup(function()
   use 'hashivim/vim-terraform'
   use 'LnL7/vim-nix'
   use 'simrat39/rust-tools.nvim'
+  use 'pbnsilva/vim-typeql'
+  use 'google/vim-maktaba'
+  use 'bazelbuild/vim-bazel'
 
   ---------------------
   -- From old config --

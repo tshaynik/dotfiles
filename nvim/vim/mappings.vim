@@ -20,6 +20,7 @@ nnoremap <leader>fp :Telescope projects<cr>
 
 " File Explorer
 nnoremap <Tab> :Rexplore<CR>
+nnoremap <leader>x :Explore<CR>
 
 " Use system clipboard
 vnoremap <leader>y "+y
