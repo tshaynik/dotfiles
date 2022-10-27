@@ -210,6 +210,11 @@ autocmd!
 autocmd FileType haskell set tabstop=4 expandtab smarttab
 augroup end
 
+augroup filetype_bazel
+autocmd!
+autocmd FileType bzl set tabstop=4 expandtab smarttab
+augroup end
+
 augroup nonvim
  au!
  au BufRead *.png,*.jpg,*.pdf,*.gif,*.xls*,*.ppt*,*.doc*,*.rtf sil exe "!xdg-open " . shellescape(expand("%:p")) | bd | let &ft=&ft

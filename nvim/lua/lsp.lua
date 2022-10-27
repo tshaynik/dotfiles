@@ -3,7 +3,7 @@ local runtime_path = vim.split(package.path, ';')
 table.insert(runtime_path, "lua/?.lua")
 table.insert(runtime_path, "lua/?/init.lua")
 
-local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
+local capabilities = require('cmp_nvim_lsp').default_capabilities(vim.lsp.protocol.make_client_capabilities())
 
 require'lspconfig'.sumneko_lua.setup {
   capabilities = capabilities,
@@ -43,6 +43,7 @@ require('lspconfig').cssls.setup{
   --cmd = {'/home/mandolin/.nix-profile/lib/node_modules/lib/node_modules/vscode-css-languageserver-bin/cssServerMain.js'};
 }
 
+-- Python
 require('lspconfig').pyright.setup{
   capabilities = capabilities,
 }
@@ -57,6 +58,16 @@ require'lspconfig'.hls.setup{
   capabilities = capabilities,
 }
 
+-- Svelte
+require'lspconfig'.svelte.setup{
+  capabilities = capabilities,
+}
+
+-- TypeScript
+require'lspconfig'.tsserver.setup{
+  capabilities = capabilities,
+}
+
 -- Rust
 local rust_opts = {
     tools = { -- rust-tools options
@@ -66,11 +77,6 @@ local rust_opts = {
         -- the hints or just run :RustSetInlayHints.
         -- default: true
         autoSetHints = true,
-
-        -- whether to show hover actions inside the hover window
-        -- this overrides the default hover handler so something like lspsaga.nvim's hover would be overriden by this
-        -- default: true
-        hover_with_actions = true,
 
         -- These apply to the default RustRunnables command
         runnables = {

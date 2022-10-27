@@ -29,3 +29,5 @@ vnoremap <leader>p "+p
 nnoremap <leader>y "+y
 nnoremap <C-c> "+y
 nnoremap <leader>p "+p
+
+nnoremap <leader>mf :Telescope media_files<CR>

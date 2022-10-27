@@ -8,6 +8,7 @@ return require('packer').startup(function()
   use 'neovim/nvim-lspconfig'
   -- completion
   use 'hrsh7th/cmp-nvim-lsp'
+  use 'jose-elias-alvarez/null-ls.nvim'
   use 'hrsh7th/cmp-buffer'
   use 'hrsh7th/cmp-path'
   use 'hrsh7th/cmp-cmdline'
@@ -37,6 +38,13 @@ return require('packer').startup(function()
     'nvim-telescope/telescope.nvim',
     requires = { {'nvim-lua/plenary.nvim'} }
   }
+
+  use 'mfussenegger/nvim-dap' -- debugging
+
+  use 'nvim-telescope/telescope-media-files.nvim'
+
+  use 'renerocksai/calendar-vim'
+  use 'renerocksai/telekasten.nvim'
 
   use {
     "ahmedkhalf/project.nvim",
@@ -101,6 +109,7 @@ return require('packer').startup(function()
   use 'pbnsilva/vim-typeql'
   use 'google/vim-maktaba'
   use 'bazelbuild/vim-bazel'
+  use 'LhKipp/nvim-nu'
 
   ---------------------
   -- From old config --
