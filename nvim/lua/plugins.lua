@@ -110,6 +110,7 @@ return require('packer').startup(function()
   use 'google/vim-maktaba'
   use 'bazelbuild/vim-bazel'
   use 'LhKipp/nvim-nu'
+  use 'wuelnerdotexe/vim-astro'
 
   ---------------------
   -- From old config --

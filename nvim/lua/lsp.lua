@@ -43,6 +43,10 @@ require('lspconfig').cssls.setup{
   --cmd = {'/home/mandolin/.nix-profile/lib/node_modules/lib/node_modules/vscode-css-languageserver-bin/cssServerMain.js'};
 }
 
+require'lspconfig'.astro.setup{
+  capabilities = capabilities,
+}
+
 -- Python
 require('lspconfig').pyright.setup{
   capabilities = capabilities,
