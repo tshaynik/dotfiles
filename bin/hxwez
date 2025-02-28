@@ -1,0 +1,56 @@
+#! /usr/bin/env nu
+
+def "main" [] {
+  #Open term
+  wezterm cli split-pane --cwd $env.PWD
+}
+
+def "main terminal" [] {
+  wezterm cli split-pane --cwd $env.PWD | ignore
+}
+
+def "main kill" [] {
+  let pane_below = (wezterm cli get-pane-direction down)
+  wezterm cli kill-pane --pane-id $pane_below | ignore
+}
+
+# Send to terminal pane below
+def "main send" [] {
+  let text = $in
+  let pane_below = (wezterm cli get-pane-direction down)
+  echo $text | wezterm cli send-text --pane-id $pane_below | ignore
+}
+
+def "main lazygit" [] {
+  wezterm cli split-pane --cwd $env.PWD -- lazygit | ignore
+}
+
+def "main blame" [] {
+  let status = ( helix_status )
+  wezterm cli split-pane --cwd $env.PWD -- tig blame $status.file $"+($status.line)" | ignore
+}
+
+def "main repl" [] {
+  let status = ( helix_status )
+  let repl_bin = match ($status.file | path parse | get extension) {
+    nix => ['nix', 'repl'],
+    _ => ['nu'],
+  }
+  wezterm cli split-pane --cwd $env.PWD -- ...$repl_bin | ignore
+}
+
+# Returns a table with the current helix file and line
+def helix_status [] {
+  wezterm cli get-text | get_status_line
+}
+
+# Reads full text of a Helix window from stdin, isolates the status line (second last line)
+# and parses into a table
+def "get_status_line" [] {
+    $in
+    | lines 
+    | last 2 
+    | first 
+    | parse -r ' (?<mode>\w+)\s+(?<file>\S+)\s[^│]* (?<line>\d+):(?<char>\d+)'
+    | get 0
+}

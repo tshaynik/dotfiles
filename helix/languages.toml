@@ -1,0 +1,53 @@
+[[language]]
+name = "starlark"
+file-types = [
+  "bzl",
+  "bazel",
+  "star",
+  { glob = "BUILD" },
+  { glob = "BUILD.*" },
+  { glob = "Tiltfile" },
+  { glob = "WORKSPACE" },
+]
+language-servers = ["buck2"]
+formatter = { command = "buildifier", args = ["-"] }
+auto-format = true
+
+[language-server.buck2]
+command = "buck2"
+args = ["lsp"]
+
+[[language]]
+name = "rust"
+auto-format = true
+
+[language-server.rust-analyzer.config]
+check.command = "clippy"
+
+[[language]]
+name = "nix"
+formatter = { command = "nixfmt" }
+auto-format = true
+language-servers = ["nixd"]
+
+[language-server.nixd]
+command = "nixd"
+
+[[language]]
+name = "toml"
+auto-format = true
+formatter = { command = "taplo", args = ["fmt", "-"] }
+
+[language-server.taplo.config]
+# Workaround for nonsense of being nonfunctional outside git directories
+# (https://github.com/helix-editor/helix/issues/3897#issuecomment-2361674437)
+root_dir = [".git", "*.toml"]
+
+[language-server.vscode-json-language-server]
+command = "vscode-json-languageserver"
+args = ["--stdio"]
+config = { provideFormatter = true, json = { validate = { enable = true } } }
+
+[[language]]
+name = "markdown"
+formatter = { command = "dprint", args = ["fmt", "--stdin", "md"] }

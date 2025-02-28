@@ -1,0 +1,43 @@
+theme = "fleet_dark"
+
+[editor.soft-wrap]
+enable = true
+
+[editor.cursor-shape]
+insert = "bar"
+normal = "block"
+select = "underline"
+
+[keys.normal]
+D = ["ensure_selections_forward", "extend_to_line_end", "delete_selection"]
+S-ret = [
+  ":pipe-to kitty @ send-text --match 'title:REPL' --bracketed-paste enable --stdin",
+  ":pipe-to kitty @ send-text --match 'title:REPL' '\r'",
+]
+"C-[" = "goto_previous_buffer"
+"C-]" = "goto_next_buffer"
+A-w = ":buffer-close"
+# Nushell does not support suspend: https://github.com/helix-editor/helix/discussions/10545
+C-z = "no_op"
+
+[keys.select]
+C-z = "no_op"
+
+[keys.normal."\\"]
+t = ":sh hxwez terminal"
+k = ":sh hxwez kill"
+g = ":sh hxwez lazygit"
+b = ":sh hxwez blame"
+r = ":sh hxwez repl"
+s = ":pipe-to hxwez send"
+
+[keys.select."\\"]
+t = ":sh hxwez terminal"
+k = ":sh hxwez kill"
+g = ":sh hxwez lazygit"
+b = ":sh hxwez blame"
+r = ":sh hxwez repl"
+s = ":pipe-to hxwez send"
+
+[editor]
+shell = ["nu", "-c"]
