@@ -15,12 +15,44 @@
   # release notes.
   home.stateVersion = "24.11"; # Please read the comment before changing.
 
+  programs.carapace = {
+    enable = true;
+  };
+
+  programs.git = {
+    enable = true;
+  };
+
+  programs.helix = {
+    enable = true;
+    defaultEditor = true;
+    extraPackages = [
+      pkgs.bash-language-server
+      pkgs.buildifier
+      pkgs.marksman
+      pkgs.nixd
+      pkgs.nixfmt-rfc-style
+      pkgs.ruff
+      pkgs.rust-analyzer
+      pkgs.starpls-bin
+    ];
+  };
+  programs.nushell = {
+    enable = true;
+  };
+
+  programs.starship.enable = true;
+
+  programs.zellij.enable = true;
+
   # The home.packages option allows you to install Nix packages into your
   # environment.
   home.packages = [
-    # # Adds the 'hello' command to your environment. It prints a friendly
-    # # "Hello, world!" when run.
-    # pkgs.hello
+    pkgs.ripgrep
+    pkgs.fd
+    pkgs.tokei
+    pkgs.lazygit
+    pkgs.tree
 
     # # It is sometimes useful to fine-tune packages, for example, by applying
     # # overrides. You can do that directly here, just don't forget the
