@@ -54,12 +54,9 @@
 
   programs.nushell = {
     enable = true;
-    extraConfig = ''
-      $env.config.show_banner = false
-      $env.config.buffer_editor = "hx"
-      $env.config.edit_mode = 'vi'
-      alias lg = lazygit
-    '';
+    # extraConfig = builtins.readFile ./nushell/config.nu;
+    configFile.source = ./nushell/config.nu;
+    envFile.source = ./nushell/env.nu;
   };
 
   programs.starship.enable = true;

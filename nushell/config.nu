@@ -136,11 +136,6 @@ let light_theme = {
     shape_vardecl: purple
 }
 
-# External completer example
-# let carapace_completer = {|spans|
-#     carapace $spans.0 nushell ...$spans | from json
-# }
-
 # The default config record. This is where much of your global configuration is setup.
 $env.config = {
     show_banner: false # true or false to enable or disable the welcome banner at startup
@@ -216,8 +211,7 @@ $env.config = {
     }
 
     filesize: {
-        metric: false # true => KB, MB, GB (ISO standard), false => KiB, MiB, GiB (Windows standard)
-        format: "auto" # b, kb, kib, mb, mib, gb, gib, tb, tib, pb, pib, eb, eib, auto
+        unit: "metric"
     }
 
     cursor_shape: {
@@ -229,7 +223,7 @@ $env.config = {
     color_config: $dark_theme # if you want a more interesting theme, you can replace the empty record with `$dark_theme`, `$light_theme` or another custom record
     footer_mode: "auto" # always, never, number_of_rows, auto
     float_precision: 2 # the precision for displaying floats in tables
-    buffer_editor: "" # command that will be used to edit the current line buffer with ctrl+o, if unset fallback to $env.EDITOR and $env.VISUAL
+    buffer_editor: "hx" # command that will be used to edit the current line buffer with ctrl+o, if unset fallback to $env.EDITOR and $env.VISUAL
     use_ansi_coloring: true
     bracketed_paste: true # enable bracketed paste, currently useless on windows
     edit_mode: vi # emacs, vi
@@ -868,32 +862,18 @@ $env.config.hooks.pre_prompt = (
     $env.config.hooks.pre_prompt | append (source ~/Code/Personal/nu_scripts/nu-hooks/nu-hooks/direnv/config.nu)
 )
 
+# source ~/Code/Personal/nu_scripts/aliases/git/git-aliases.nu
+# source ~/Code/Personal/nu_scripts/custom-completions/git/git-completions.nu
+# source ~/Code/Personal/nu_scripts/custom-completions/nix/nix-completions.nu
+# source ~/Code/Personal/nu_scripts/modules/nix/nix.nu
+# source ~/Code/Personal/nu_scripts/modules/formats/from-env.nu
 
-use ~/.cache/starship/init.nu
-source ~/.zoxide.nu
-
-source ~/Code/Personal/nu_scripts/aliases/git/git-aliases.nu
-source ~/Code/Personal/nu_scripts/custom-completions/git/git-completions.nu
-source ~/Code/Personal/nu_scripts/custom-completions/nix/nix-completions.nu
-source ~/Code/Personal/nu_scripts/modules/nix/nix.nu
-source ~/Code/Personal/nu_scripts/modules/formats/from-env.nu
-
-source ~/Documents/Outside/Scores/mayrent/mayrent
+# source ~/Documents/Outside/Scores/mayrent/mayrent
 
 # Aliases
 alias lg = lazygit
 alias kp = wezterm cli kill-pane --pane-id (wezterm cli get-pane-direction down)
 alias yt = yt-dlp -x --audio-format mp3
-
-def --env y [...args] {
-	let tmp = (mktemp -t "yazi-cwd.XXXXXX")
-	yazi ...$args --cwd-file $tmp
-	let cwd = (open $tmp)
-	if $cwd != "" and $cwd != $env.PWD {
-		cd $cwd
-	}
-	rm -fp $tmp
-}
 
 # nushell wrapper for `nix profile list`
 def npl [...args ] {
