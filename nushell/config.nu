@@ -858,10 +858,6 @@ $env.config = {
     ]
 }
 
-$env.config.hooks.pre_prompt = (
-    $env.config.hooks.pre_prompt | append (source ~/Code/Personal/nu_scripts/nu-hooks/nu-hooks/direnv/config.nu)
-)
-
 # source ~/Code/Personal/nu_scripts/aliases/git/git-aliases.nu
 # source ~/Code/Personal/nu_scripts/custom-completions/git/git-completions.nu
 # source ~/Code/Personal/nu_scripts/custom-completions/nix/nix-completions.nu

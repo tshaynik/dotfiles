@@ -1,10 +1,15 @@
-{ config, pkgs, ... }:
+{
+  config,
+  pkgs,
+  username,
+  ...
+}:
 
 {
   # Home Manager needs a bit of information about you and the paths it should
   # manage.
-  home.username = "tshaynik";
-  home.homeDirectory = "/home/tshaynik";
+  home.username = username;
+  home.homeDirectory = "/home/${username}";
 
   # This value determines the Home Manager release that your configuration is
   # compatible with. This helps avoid breakage when a new Home Manager release
@@ -15,9 +20,8 @@
   # release notes.
   home.stateVersion = "24.11"; # Please read the comment before changing.
 
-  programs.carapace = {
-    enable = true;
-  };
+  programs.carapace.enable = true;
+  programs.direnv.enable = true;
 
   programs.git = {
     enable = true;
