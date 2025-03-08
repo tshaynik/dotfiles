@@ -56,6 +56,8 @@
     settings = builtins.fromTOML (builtins.readFile ./helix/config.toml);
   };
 
+  programs.keychain.enable = true;
+
   programs.nushell = {
     enable = true;
     # extraConfig = builtins.readFile ./nushell/config.nu;
