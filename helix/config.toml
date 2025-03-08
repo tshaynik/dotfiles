@@ -24,20 +24,20 @@ C-z = "no_op"
 C-z = "no_op"
 
 [keys.normal."\\"]
-t = ":sh hxwez terminal"
-k = ":sh hxwez kill"
-g = ":sh hxwez lazygit"
-b = ":sh hxwez blame"
-r = ":sh hxwez repl"
-s = ":pipe-to hxwez send"
+t = ":sh hxextra terminal"
+k = ":sh hxextra kill"
+g = ":sh hxextra lazygit"
+b = ":sh hxextra blame"
+r = ":sh hxextra repl"
+s = ":pipe-to hxextra send"
 
 [keys.select."\\"]
-t = ":sh hxwez terminal"
-k = ":sh hxwez kill"
-g = ":sh hxwez lazygit"
-b = ":sh hxwez blame"
-r = ":sh hxwez repl"
-s = ":pipe-to hxwez send"
+t = ":sh hxextra terminal"
+k = ":sh hxextra kill"
+g = ":sh hxextra lazygit"
+b = ":sh hxextra blame"
+r = ":sh hxextra repl"
+s = ":pipe-to hxextra send"
 
 [editor]
 shell = ["nu", "-c"]
