@@ -21,11 +21,15 @@
 
   programs.git = {
     enable = true;
+    delta.enable = true;
+
+    extraConfig = import git/config.nix;
   };
 
   programs.helix = {
     enable = true;
     defaultEditor = true;
+
     extraPackages = [
       pkgs.bash-language-server
       pkgs.buildifier
@@ -42,7 +46,6 @@
   };
 
   programs.starship.enable = true;
-
   programs.zellij.enable = true;
 
   # The home.packages option allows you to install Nix packages into your
@@ -53,7 +56,6 @@
     pkgs.tokei
     pkgs.lazygit
     pkgs.tree
-
     # # It is sometimes useful to fine-tune packages, for example, by applying
     # # overrides. You can do that directly here, just don't forget the
     # # parentheses. Maybe you want to install Nerd Fonts with a limited number of
