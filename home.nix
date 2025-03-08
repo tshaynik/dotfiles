@@ -39,37 +39,17 @@
     extraPackages = [
       pkgs.bash-language-server
       pkgs.buildifier
+      pkgs.dprint
       pkgs.marksman
       pkgs.nixd
       pkgs.nixfmt-rfc-style
       pkgs.ruff
       pkgs.rust-analyzer
       pkgs.starpls-bin
+      pkgs.taplo
     ];
-    languages = {
-      language-server.starpls = {
-        command = "starpls";
-        args = [ ];
-      };
-
-      language = [
-        {
-          name = "starlark";
-          auto-format = true;
-          language-servers = [ "starpls" ];
-          formatter = {
-            command = "buildifier";
-          };
-        }
-        {
-          name = "nix";
-          auto-format = true;
-          formatter = {
-            command = "nixfmt";
-          };
-        }
-      ];
-    };
+    languages = builtins.fromTOML (builtins.readFile ./helix/languages.toml);
+    settings = builtins.fromTOML (builtins.readFile ./helix/config.toml);
   };
 
   programs.nushell = {

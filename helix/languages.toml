@@ -9,9 +9,14 @@ file-types = [
   { glob = "Tiltfile" },
   { glob = "WORKSPACE" },
 ]
-language-servers = ["buck2"]
+# language-servers = ["buck2"]
+language-servers = ["starpls"]
 formatter = { command = "buildifier", args = ["-"] }
-auto-format = true
+  auto-format = true
+
+[language-server.starpls]
+args = []
+command = "starpls"
 
 [language-server.buck2]
 command = "buck2"
@@ -28,10 +33,6 @@ check.command = "clippy"
 name = "nix"
 formatter = { command = "nixfmt" }
 auto-format = true
-language-servers = ["nixd"]
-
-[language-server.nixd]
-command = "nixd"
 
 [[language]]
 name = "toml"
