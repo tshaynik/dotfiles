@@ -29,6 +29,12 @@
   programs.helix = {
     enable = true;
     defaultEditor = true;
+    ignores = [
+      "!.gitignore"
+      "!.github"
+      "!.bazelrc"
+      "!.bazelversion"
+    ];
 
     extraPackages = [
       pkgs.bash-language-server
@@ -40,22 +46,58 @@
       pkgs.rust-analyzer
       pkgs.starpls-bin
     ];
+    languages = {
+      language-server.starpls = {
+        command = "starpls";
+        args = [ ];
+      };
+
+      language = [
+        {
+          name = "starlark";
+          auto-format = true;
+          language-servers = [ "starpls" ];
+          formatter = {
+            command = "buildifier";
+          };
+        }
+        {
+          name = "nix";
+          auto-format = true;
+          formatter = {
+            command = "nixfmt";
+          };
+        }
+      ];
+    };
   };
+
   programs.nushell = {
     enable = true;
+    extraConfig = ''
+      $env.config.show_banner = false
+      $env.config.buffer_editor = "hx"
+      $env.config.edit_mode = 'vi'
+      alias lg = lazygit
+    '';
   };
 
   programs.starship.enable = true;
+  programs.yazi.enable = true;
   programs.zellij.enable = true;
+  programs.zoxide.enable = true;
 
   # The home.packages option allows you to install Nix packages into your
   # environment.
   home.packages = [
+    pkgs.google-cloud-sdk-gce
     pkgs.ripgrep
     pkgs.fd
     pkgs.tokei
     pkgs.lazygit
     pkgs.tree
+    pkgs.nixfmt-rfc-style
+    pkgs.buildifier
     # # It is sometimes useful to fine-tune packages, for example, by applying
     # # overrides. You can do that directly here, just don't forget the
     # # parentheses. Maybe you want to install Nerd Fonts with a limited number of
