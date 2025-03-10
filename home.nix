@@ -76,6 +76,7 @@
     pkgs.google-cloud-sdk-gce
     pkgs.ripgrep
     pkgs.fd
+    pkgs.tig
     pkgs.tokei
     pkgs.lazygit
     pkgs.tree
