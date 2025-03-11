@@ -66,6 +66,7 @@ def "main repl" [] {
   let status = ( helix_status )
   let repl_bin = match ($status.file | path parse | get extension) {
     nix => ['nix', 'repl'],
+    bzl => ['starlark'],
     _ => ['nu'],
   }
   if "ZELLIJ" in $env {
