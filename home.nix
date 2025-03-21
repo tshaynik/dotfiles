@@ -56,6 +56,7 @@
     settings = builtins.fromTOML (builtins.readFile ./helix/config.toml);
   };
 
+  programs.jujutsu.enable = true;
   programs.keychain.enable = true;
 
   programs.nushell = {
