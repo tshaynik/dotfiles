@@ -12,7 +12,7 @@ file-types = [
 # language-servers = ["buck2"]
 language-servers = ["starpls"]
 formatter = { command = "buildifier", args = ["-"] }
-  auto-format = true
+auto-format = true
 
 [language-server.starpls]
 args = []
@@ -22,9 +22,16 @@ command = "starpls"
 command = "buck2"
 args = ["lsp"]
 
+[language-server.java-language-server]
+command = "java-language-server"
+
 [[language]]
 name = "rust"
 auto-format = true
+
+[[language]]
+name = "java"
+language-servers = ["java-language-server"]
 
 [language-server.rust-analyzer.config]
 check.command = "clippy"
