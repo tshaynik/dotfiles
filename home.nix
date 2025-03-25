@@ -80,6 +80,7 @@
     pkgs.tig
     pkgs.tokei
     pkgs.lazygit
+    pkgs.lazyjj
     pkgs.tree
     pkgs.nixfmt-rfc-style
     pkgs.buildifier

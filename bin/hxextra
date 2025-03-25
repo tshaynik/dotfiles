@@ -53,6 +53,14 @@ def "main lazygit" [] {
   }
 }
 
+def "main lazyjj" [] {
+  if "ZELLIJ" in $env {
+    zellij run --close-on-exit --in-place -- lazyjj | ignore
+  } else {
+    wezterm cli split-pane --cwd $env.PWD -- lazyjj | ignore
+  }
+}
+
 def "main blame" [] {
   let status = ( helix_status )
   if "ZELLIJ" in $env {
