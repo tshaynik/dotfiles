@@ -100,3 +100,4 @@ path add ($env.HOME | path join ".local" "bin")
 # source ($nu.default-config-dir | path join 'custom.nu')
 
 $env.XCURSOR_THEME = 'Adwaita'
+$env.EDITOR = 'hx'
