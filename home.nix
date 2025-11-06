@@ -25,9 +25,7 @@
 
   programs.git = {
     enable = true;
-    delta.enable = true;
-
-    extraConfig = import git/config.nix;
+    settings = import git/config.nix;
   };
 
   programs.helix = {
@@ -49,7 +47,7 @@
       pkgs.nixfmt-rfc-style
       pkgs.ruff
       pkgs.rust-analyzer
-      pkgs.starpls-bin
+      pkgs.starpls
       pkgs.taplo
     ];
     languages = builtins.fromTOML (builtins.readFile ./helix/languages.toml);
