@@ -59,9 +59,11 @@
 
   programs.nushell = {
     enable = true;
-    # extraConfig = builtins.readFile ./nushell/config.nu;
     configFile.source = ./nushell/config.nu;
     envFile.source = ./nushell/env.nu;
+    plugins = [
+      pkgs.nushellPlugins.query
+    ];
   };
 
   programs.starship.enable = true;
