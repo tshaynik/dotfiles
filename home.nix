@@ -55,7 +55,13 @@
   };
 
   programs.jujutsu.enable = true;
-  programs.keychain.enable = true;
+  programs.keychain = {
+    enable = true;
+    keys = [
+      "id_rsa"
+      "id_ed25519"
+    ];
+  };
 
   programs.nushell = {
     enable = true;
