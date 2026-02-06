@@ -20,6 +20,8 @@
   # release notes.
   home.stateVersion = "24.11"; # Please read the comment before changing.
 
+  programs.anki.enable = true;
+
   programs.carapace.enable = true;
   programs.direnv.enable = true;
 
