@@ -43,6 +43,8 @@
         # to pass through arguments to home.nix
         extraSpecialArgs = {
           username = "mandolin";
+          jjname = "tshaynik";
+          email = "tshaynik@proton.me";
         };
       };
     };

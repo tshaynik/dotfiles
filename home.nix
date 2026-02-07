@@ -2,6 +2,8 @@
   config,
   pkgs,
   username,
+  jjname,
+  email,
   ...
 }:
 
@@ -52,11 +54,31 @@
       pkgs.starpls
       pkgs.taplo
     ];
-    languages = builtins.fromTOML (builtins.readFile ./helix/languages.toml);
-    settings = builtins.fromTOML (builtins.readFile ./helix/config.toml);
+    languages = fromTOML (builtins.readFile ./helix/languages.toml);
+    settings = fromTOML (builtins.readFile ./helix/config.toml);
   };
 
-  programs.jujutsu.enable = true;
+  programs.jujutsu = {
+    enable = true;
+    settings = {
+      user = {
+        name = jjname;
+        email = email;
+      };
+
+      ui."diff-formatter" = [
+        "difft"
+        "--color=always"
+        "$left"
+        "$right"
+      ];
+    };
+  };
+
+  programs.jjui.enable = true;
+
+  programs.difftastic.enable = true;
+
   programs.keychain = {
     enable = true;
     keys = [
