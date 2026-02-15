@@ -61,46 +61,24 @@ def "main lazyjj" [] {
   }
 }
 
-def "main blame" [] {
-  let status = ( helix_status )
+def "main blame" [ file: path ] {
   if "ZELLIJ" in $env {
-    zellij run --in-place --close-on-exit --cwd $env.PWD -- tig blame $status.file $"+($status.line)"  | ignore
+    zellij run --in-place --close-on-exit --cwd $env.PWD -- jj file annotate $file  | ignore
   } else {
-    wezterm cli split-pane --cwd $env.PWD -- tig blame $status.file $"+($status.line)" | ignore
+    wezterm cli split-pane --cwd $env.PWD -- jj file annotate $file | ignore
   }
 }
 
-def "main repl" [] {
-  let status = ( helix_status )
-  let repl_bin = match ($status.file | path parse | get extension) {
+def "main repl" [ language: string ] {
+  let repl_bin = match $language {
     nix => ['nix', 'repl'],
     bzl => ['starlark'],
+    clojure => ['clj'],
     _ => ['nu'],
   }
   if "ZELLIJ" in $env {
-    zellij run -d down --close-on-ext --cwd $env.PWD -- ...$repl_bin | ignore
+    zellij run -d down --close-on-exit --cwd $env.PWD -- ...$repl_bin | ignore
   } else {
     wezterm cli split-pane --cwd $env.PWD -- ...$repl_bin | ignore
   }
-}
-
-# Returns a table with the current helix file and line
-def helix_status [] {
-  if "ZELLIJ" in $env {
-    zellij action dump-screen /tmp/zellij.out
-    open /tmp/zellij.out | get_status_line
-  } else {
-    wezterm cli get-text | get_status_line
-  }
-}
-
-# Reads full text of a Helix window from stdin, isolates the status line (second last line)
-# and parses into a table
-def get_status_line [] {
-    $in
-    | lines 
-    | last 2 
-    | first 
-    | parse -r ' (?<mode>\w+)\s+(?<file>\S+)\s[^│]* (?<line>\d+):(?<char>\d+)'
-    | get 0
 }

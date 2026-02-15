@@ -24,8 +24,8 @@ t = ":sh hxextra terminal"
 k = ":sh hxextra kill"
 g = ":sh hxextra lazygit"
 j = ":sh hxextra lazyjj"
-b = ":sh hxextra blame"
-r = ":sh hxextra repl"
+b = ":sh hxextra blame %{buffer_name}"
+r = ":sh hxextra repl %{language}"
 s = ":pipe-to hxextra send"
 
 [keys.select."\\"]
