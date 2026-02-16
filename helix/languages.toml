@@ -59,3 +59,18 @@ config = { provideFormatter = true, json = { validate = { enable = true } } }
 [[language]]
 name = "markdown"
 formatter = { command = "dprint", args = ["fmt", "--stdin", "md"] }
+
+[language-server.tofu-ls]
+command = "tofu-ls"
+args = ["serve"]
+
+[[language]]
+name = "hcl"
+language-id = "opentofu"
+scope = "source.hcl"
+file-types = ["tf", "tofu", "tfvars"]
+auto-format = true
+comment-token = "#"
+block-comment-tokens = { start = "/*", end = "*/" }
+indent = { tab-width = 2, unit = "  " }
+language-servers = ["tofu-ls"]
