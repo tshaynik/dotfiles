@@ -32,8 +32,9 @@ s = ":pipe-to hxextra send"
 t = ":sh hxextra terminal"
 k = ":sh hxextra kill"
 g = ":sh hxextra lazygit"
-b = ":sh hxextra blame"
-r = ":sh hxextra repl"
+j = ":sh hxextra lazyjj"
+b = ":sh hxextra blame %{buffer_name}"
+r = ":sh hxextra repl %{language}"
 s = ":pipe-to hxextra send"
 
 [editor]
