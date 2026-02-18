@@ -26,7 +26,7 @@ g = ":sh hxextra lazygit"
 j = ":sh hxextra lazyjj"
 b = ":sh hxextra blame %{buffer_name}"
 r = ":sh hxextra repl %{language}"
-s = ":pipe-to hxextra send"
+s = ":sh hxextra send '%{selection}'"
 
 [keys.select."\\"]
 t = ":sh hxextra terminal"
@@ -35,7 +35,7 @@ g = ":sh hxextra lazygit"
 j = ":sh hxextra lazyjj"
 b = ":sh hxextra blame %{buffer_name}"
 r = ":sh hxextra repl %{language}"
-s = ":pipe-to hxextra send"
+s = ":sh hxextra send '%{selection}'"
 
 [editor]
 shell = ["nu", "-c"]

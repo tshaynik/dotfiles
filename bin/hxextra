@@ -34,12 +34,10 @@ def "main kill" [] {
 }
 
 # Send to terminal pane below
-def "main send" [ ] {
-  let text = $in
+def "main send" [ text ] {
   if "ZELLIJ" in $env {
-    zellij action focus-next-pane
-    zellij action write-chars $"$(text)\n"
-    zellij action focus-next-pane
+    zellij action move-focus right
+    zellij action write-chars $"($text)\n"
   } else {
     let pane_below = (wezterm cli get-pane-direction down)
     echo $text | wezterm cli send-text --pane-id $pane_below | ignore
@@ -73,12 +71,12 @@ def "main blame" [ file: path ] {
 def "main repl" [ language: string ] {
   let repl_bin = match $language {
     "nix" => ['nix', 'repl'],
-    "bzl" => ['starlark'],
+    "starlark" => ['starlark'],
     "clojure" => ['clj'],
     _ => ['nu'],
   }
   if "ZELLIJ" in $env {
-    zellij run -d down --close-on-exit --cwd $env.PWD -- ...$repl_bin | ignore
+    zellij run -d right --close-on-exit --cwd $env.PWD -- ...$repl_bin | ignore
   } else {
     wezterm cli split-pane --cwd $env.PWD -- ...$repl_bin | ignore
   }
