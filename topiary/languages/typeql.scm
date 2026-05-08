@@ -110,9 +110,15 @@
   "," @append_input_softline
 )
 
-; Commas in thing constraints: preserve input line breaks
+; Commas in thing constraints: preserve input line breaks, indent continuations
 (thing_constraint_list
   "," @append_input_softline
+)
+(statement_thing_basic
+  (thing_constraint_list) @prepend_indent_start @append_indent_end
+)
+(statement_thing_relation_anonymous
+  (thing_constraint_list) @prepend_indent_start @append_indent_end
 )
 
 ; Semicolons: preserve input line breaks
