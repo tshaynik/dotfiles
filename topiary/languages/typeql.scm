@@ -237,18 +237,15 @@
   ";" @prepend_indent_end
 )
 
-; Disjunction/conjunction/negation: indent inside braces
+; Disjunction/conjunction/negation: indent patterns inside braces
 (pattern_disjunction
-  "{" @append_indent_start
-  "}" @prepend_indent_end
+  (patterns) @prepend_indent_start @append_indent_end
 )
 (pattern_conjunction
-  "{" @append_indent_start
-  "}" @prepend_indent_end
+  (patterns) @prepend_indent_start @append_indent_end
 )
 (pattern_negation
-  "{" @append_indent_start
-  "}" @prepend_indent_end
+  (patterns) @prepend_indent_start @append_indent_end
 )
 
 ; Function body: newline + indent
