@@ -144,6 +144,13 @@
       executable = true;
     };
 
+    # Tree-sitter grammar for TypeQL
+    ".config/helix/runtime/grammars/typeql.so".source = ./helix/runtime/grammars/typeql.so;
+    ".config/helix/runtime/queries/typeql" = {
+      source = ./helix/runtime/queries/typeql;
+      recursive = true;
+    };
+
     # # You can also set the file content immediately.
     # ".gradle/gradle.properties".text = ''
     #   org.gradle.console=verbose

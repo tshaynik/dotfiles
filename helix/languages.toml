@@ -74,3 +74,14 @@ comment-token = "#"
 block-comment-tokens = { start = "/*", end = "*/" }
 indent = { tab-width = 2, unit = "  " }
 language-servers = ["tofu-ls"]
+
+[[language]]
+name = "typeql"
+scope = "source.typeql"
+file-types = ["tql", "typeql"]
+comment-token = "#"
+roots = []
+indent = { tab-width = 2, unit = "  " }
+
+[[grammar]]
+name = "typeql"
