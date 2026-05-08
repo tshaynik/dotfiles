@@ -144,10 +144,6 @@
       source = ./bin/hxextra;
       executable = true;
     };
-    ".local/bin/topiary-typeql" = {
-      source = ./bin/topiary-typeql;
-      executable = true;
-    };
 
     # Tree-sitter grammar for TypeQL
     ".config/helix/runtime/grammars/typeql.so".source = ./helix/runtime/grammars/typeql.so;
@@ -157,9 +153,8 @@
     };
 
     # Topiary formatter for TypeQL
-    ".config/topiary/topiary.ncl".source = ./topiary/topiary.ncl;
+    ".config/topiary.ncl".source = ./topiary/config.ncl;
     ".config/topiary/languages/typeql.scm".source = ./topiary/languages/typeql.scm;
-
 
     # # You can also set the file content immediately.
     # ".gradle/gradle.properties".text = ''
@@ -186,6 +181,7 @@
   #
   home.sessionVariables = {
     EDITOR = "hx";
+    TOPIARY_CONFIG_FILE = "${config.home.homeDirectory}/.config/topiary.ncl";
     TOPIARY_LANGUAGE_DIR = "${config.home.homeDirectory}/.config/topiary/languages";
   };
 

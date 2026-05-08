@@ -870,6 +870,7 @@ $env.config = {
 alias lg = lazygit
 alias kp = wezterm cli kill-pane --pane-id (wezterm cli get-pane-direction down)
 alias yt = yt-dlp -x --audio-format mp3
+alias topiary = topiary --merge-configuration
 
 # nushell wrapper for `nix profile list`
 def npl [...args ] {

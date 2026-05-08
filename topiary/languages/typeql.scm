@@ -1,17 +1,9 @@
 ; Topiary formatting query for TypeQL
 ;
-; Reference for Topiary captures:
-;   @leaf - Don't format this node's content
-;   @append_space / @prepend_space - Add space after/before
-;   @append_hardline / @prepend_hardline - Add newline after/before
-;   @append_spaced_softline / @prepend_spaced_softline - Space or newline
-;   @append_empty_softline / @prepend_empty_softline - Empty or newline
-;   @append_indent_start / @append_indent_end - Indentation
-;   @allow_blank_line_before - Preserve blank lines from input
-;   @delete - Remove this node
-;   @do_nothing - Anchor for adjacency patterns
+; Philosophy: Preserve input formatting as much as possible.
+; Enforce spacing around keywords/operators.
 
-; === Leaves (don't reformat) ===
+; === Leaves (don't reformat contents) ===
 [
   (comment)
   (quoted_string_literal)
@@ -24,23 +16,17 @@
   (comment)
   (definable)
   (pattern)
+  (statement)
   (query)
+  (query_stage)
 ] @allow_blank_line_before
 
 ; === Comments ===
 (comment) @append_hardline
 (comment) @prepend_input_softline
 
-; === Keywords with trailing space ===
+; === Keyword spacing ===
 [
-  "match"
-  "insert"
-  "put"
-  "update"
-  "delete"
-  "define"
-  "undefine"
-  "redefine"
   "fetch"
   "select"
   "sort"
@@ -51,9 +37,6 @@
   "reduce"
   "not"
   "try"
-  "in"
-  "from"
-  "as"
   "fun"
   "return"
   "struct"
@@ -61,8 +44,23 @@
   "with"
 ] @append_space
 
-; Keywords with surrounding space
+; Clause keywords: use input_softline so input decides if newline follows
 [
+  "match"
+  "insert"
+  "put"
+  "update"
+  "delete"
+  "define"
+  "undefine"
+  "redefine"
+] @append_input_softline
+
+; Keywords mid-statement: space on both sides
+[
+  "in"
+  "from"
+  "as"
   "isa"
   "isa!"
   "sub"
@@ -76,31 +74,11 @@
   "or"
   "of"
   "value"
+  "contains"
+  "like"
 ] @prepend_space @append_space
 
-; === Kind (entity/attribute/relation) needs trailing space ===
-(kind) @append_space
-
-; Space after type_ref when followed by an expression/var in has/isa constraints
-(has_constraint
-  (type_ref) @append_space
-  .
-  [(expression_value) (expression_list) (comparison) (var)]
-)
-(isa_constraint
-  (type_ref) @append_space
-  .
-  [(value_literal)]
-)
-
-; Space between var and order direction
-(var_order
-  (var) @append_space
-  .
-  (order)
-)
-
-; === Operators with surrounding space ===
+; === Operators ===
 [
   "=="
   "!="
@@ -110,12 +88,6 @@
   "<"
   "="
   "->"
-  "contains"
-  "like"
-] @prepend_space @append_space
-
-; Arithmetic operators with surrounding space
-[
   "+"
   "*"
   "/"
@@ -123,30 +95,28 @@
   "%"
 ] @prepend_space @append_space
 
-; === Punctuation ===
-
-; Semicolons: newline after
-";" @append_hardline
-
-; Commas in thing constraint lists: space after
-(thing_constraint_list
-  "," @append_space
+; Minus in expression context
+(expression_value
+  "-" @prepend_space @append_space
 )
 
-; Commas in relations: space after
-(relation
-  "," @append_space
-)
+; === Punctuation spacing ===
 
-; Commas in fetch object entries: softline after
-(fetch_object_entries
-  "," @append_spaced_softline
-)
+; Commas: space after (default)
+"," @append_space
 
-; Commas in definition types (type capabilities): softline after
+; Commas in type definitions: preserve input line breaks
 (definition_type
-  "," @append_spaced_softline
+  "," @append_input_softline
 )
+
+; Commas in thing constraints: preserve input line breaks
+(thing_constraint_list
+  "," @append_input_softline
+)
+
+; Semicolons: preserve input line breaks
+";" @append_input_softline
 
 ; Colons in role players: space after
 (role_player
@@ -158,90 +128,27 @@
   ":" @append_space
 )
 
-; === Clause-level formatting ===
-
-; Match clause: indent patterns
-(clause_match
-  "match" @append_empty_softline @append_indent_start
-)
-(clause_match
-  (patterns) @append_indent_end
+; Colons in function arguments: space after only
+(function_argument
+  ":" @append_space
 )
 
-; Insert clause: indent patterns
-(clause_insert
-  "insert" @append_empty_softline @append_indent_start
-)
-(clause_insert
-  (patterns) @append_indent_end
+; Colon before function block: preserve input line break
+(definition_function
+  ":" @append_input_softline
 )
 
-; === Define/redefine/undefine ===
+; === Kind needs trailing space ===
+(kind) @append_space
 
-(query_define
-  "define" @append_empty_softline @append_indent_start
-)
-(query_define
-  (definables) @append_indent_end
-)
-
-(query_redefine
-  "redefine" @append_empty_softline @append_indent_start
+; === Space after type_ref in has constraints ===
+(has_constraint
+  (type_ref) @append_space
+  .
+  [(expression_value) (expression_list) (comparison) (var)]
 )
 
-(query_undefine
-  "undefine" @append_empty_softline @append_indent_start
-)
-
-; === Braces and blocks ===
-
-; Fetch object
-(fetch_object
-  "{" @append_spaced_softline @append_indent_start
-  "}" @prepend_spaced_softline @prepend_indent_end
-)
-
-; Pattern conjunction (braces)
-(pattern_conjunction
-  "{" @append_empty_softline @append_indent_start
-  "}" @prepend_empty_softline @prepend_indent_end
-)
-
-; Pattern disjunction (braces for each branch)
-(pattern_disjunction
-  "{" @append_empty_softline @append_indent_start
-  "}" @prepend_empty_softline @prepend_indent_end
-)
-
-; Pattern negation
-(pattern_negation
-  "{" @append_hardline @append_indent_start
-  "}" @prepend_hardline @prepend_indent_end
-)
-
-; Pattern try
-(pattern_try
-  "{" @append_hardline @append_indent_start
-  "}" @prepend_hardline @prepend_indent_end
-)
-
-; === Relations ===
-(relation
-  "(" @append_empty_softline
-  ")" @prepend_empty_softline
-)
-
-; === Pipeline stages ===
-; Each query stage should start on a new line
-(query_pipeline
-  (query_stage) @prepend_hardline
-)
-; But not the first one
-(query_pipeline
-  . (query_stage) @prepend_empty_softline
-)
-
-; === Annotations ===
+; === Annotations: space before ===
 [
   "@abstract"
   "@cascade"
@@ -256,7 +163,101 @@
   "@values"
 ] @prepend_space
 
-; === Multiple queries in a file ===
+; === Structure: preserve input line breaks ===
+(definable) @prepend_input_softline
+(pattern) @prepend_input_softline
+(query_stage) @prepend_input_softline
+(return_statement) @prepend_input_softline
+"{" @append_input_softline
+"}" @prepend_input_softline
+
+; === Indentation ===
+
+; Define: newline after keyword, no indent (definitions at column 0)
+(query_define
+  "define" @append_hardline
+)
+
+; Match/insert body: indent patterns, preserve input line break
+(clause_match
+  "match" @append_indent_start
+  (patterns) @append_indent_end
+)
+(clause_insert
+  "insert" @append_indent_start
+  (patterns) @append_indent_end
+)
+
+
+
+
+
+; Type capability continuation: indent after first comma
+; The first comma is always after label, annotations, or first type_capability
+(definition_type
+  (label)
+  .
+  "," @append_indent_start
+)
+(definition_type
+  (annotations)
+  .
+  "," @append_indent_start
+)
+; Case 3: comma after first type_capability (which is a sub declaration)
+(definition_type
+  (type_capability
+    (type_capability_base
+      (sub_declaration)))
+  .
+  "," @append_indent_start
+)
+; Close indent at semicolon when definition had continuation
+(definable
+  (definition_type
+    (label)
+    .
+    ",")
+  ";" @prepend_indent_end
+)
+(definable
+  (definition_type
+    (annotations)
+    .
+    ",")
+  ";" @prepend_indent_end
+)
+(definable
+  (definition_type
+    (type_capability
+      (type_capability_base
+        (sub_declaration)))
+    .
+    ",")
+  ";" @prepend_indent_end
+)
+
+; Disjunction/conjunction/negation: indent inside braces
+(pattern_disjunction
+  "{" @append_indent_start
+  "}" @prepend_indent_end
+)
+(pattern_conjunction
+  "{" @append_indent_start
+  "}" @prepend_indent_end
+)
+(pattern_negation
+  "{" @append_indent_start
+  "}" @prepend_indent_end
+)
+
+; Function body: newline + indent
+(definition_function
+  ":" @append_hardline @append_indent_start
+  (function_block) @append_indent_end
+)
+
+; After the last query, ensure trailing newline
 (source_file
   (query) @append_hardline
 )

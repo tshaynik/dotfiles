@@ -83,7 +83,7 @@ comment-token = "#"
 roots = []
 indent = { tab-width = 2, unit = "  " }
 auto-format = true
-formatter = { command = "topiary-typeql" }
+formatter = { command = "topiary", args = ["format", "--language", "typeql", "--merge-configuration"] }
 
 [[grammar]]
 name = "typeql"

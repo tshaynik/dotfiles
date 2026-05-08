@@ -1,6 +1,0 @@
-#!/bin/sh
-export TOPIARY_LANGUAGE_DIR="$HOME/.config/topiary/languages"
-exec topiary format \
-  --language typeql \
-  --configuration "$HOME/.config/topiary/topiary.ncl" \
-  --merge-configuration

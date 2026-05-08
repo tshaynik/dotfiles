@@ -101,3 +101,5 @@ path add ($env.HOME | path join ".local" "bin")
 
 $env.XCURSOR_THEME = 'Adwaita'
 $env.EDITOR = 'hx'
+$env.TOPIARY_CONFIG_FILE = "/home/tshaynik/.config/topiary.ncl"
+$env.TOPIARY_LANGUAGE_DIR = "/home/tshaynik/.config/topiary/languages"
