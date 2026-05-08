@@ -82,6 +82,8 @@ file-types = ["tql", "typeql"]
 comment-token = "#"
 roots = []
 indent = { tab-width = 2, unit = "  " }
+auto-format = true
+formatter = { command = "topiary-typeql" }
 
 [[grammar]]
 name = "typeql"
